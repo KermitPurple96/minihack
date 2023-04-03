@@ -23,3 +23,5 @@ for i in range(0, 1000):
 os.system("head -n 1000 /usr/share/wordlists/rockyou.txt > rock.txt")
 os.system("paste rock.txt file1 > grepFile.txt")
 os.system("rm -f file1 rock.txt")
+
+#solucion: cat grepFile.txt | grep "disney"
