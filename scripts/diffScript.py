@@ -23,3 +23,6 @@ for i in range(0, 50):
     else:
         f1.write(flag + "\n")
         f2.write(flag + "\n")
+        
+        
+# Solucion: diff file1 file2
