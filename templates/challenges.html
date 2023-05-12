@@ -1,0 +1,70 @@
+{% extends './layout.html' %}
+{% block title %}challenges{% endblock %}
+
+{% block body %}
+<div class="content" style="width: 80%;margin-left: 10%;padding-top: 6%; padding-bottom: 13%;">
+    <h2 style="width: 100%; text-align: center; color: orange;margin-bottom: 2%;font-size:4em;">{{ data.titulo }}</h2>
+
+    <div class="cartas">
+        <div class="card" onclick="window.location.href='{{ url_for('chall_entorno') }}';" id="card2" style="background-color: rgb(231, 173, 66);">
+            <img src="/static/content/entorno.png" class="card-img-top" style="height: 45%; width: 50%; margin-inline: auto; margin-top: 25%; ">
+            <div class="card-body">
+            <h5 class="card-title" style="text-align:center; margin-top: 5%;">entorno</h5>
+            </div>
+        </div>
+        <div class="card" id="card1" style="background-color: rgb(231, 173, 66);">
+            <img src="/static/content/comandos.png" class="card-img-top" style="height: 30%; width: 70%; margin-inline: auto; margin-top: 35%;margin-bottom: 2%;">
+            <div class="card-body">
+            <h5 class="card-title" style="text-align:center; margin-top: 12%;">comandos</h5>
+            </div>
+        </div>
+        <div class="card" id="card2" style="background-color: rgb(231, 173, 66);">
+            <img src="/static/content/usuarios.png" class="card-img-top" style="height: 50%; width: 70%; margin-inline: auto; margin-top: 20%;">
+            <div class="card-body">
+            <h5 class="card-title" style="text-align:center; margin-top: 5%;">usuarios</h5>
+            </div>
+        </div>
+    </div>
+    <div class="cartas">
+        <div class="card" id="card1" style="background-color: rgb(231, 173, 66);">
+            <img src="/static/content/net.png" class="card-img-top" style="height: 45%; width: 72%; margin-inline: auto; margin-top: 24%;margin-bottom: 2%;">
+            <div class="card-body">
+            <h5 class="card-title" style="text-align:center; margin-top: 5%;">networking</h5>
+            </div>
+        </div>
+        <div class="card" id="card2" style="background-color: rgb(231, 173, 66);">
+            <img src="/static/content/archivos.png" class="card-img-top" style="height: 50%; width: 65%; margin-inline: auto; margin-top: 21%;">
+            <div class="card-body">
+            <h5 class="card-title" style="text-align:center; margin-top: 5%;">archivos</h5>
+            </div>
+        </div>
+        <div class="card" id="card2" style="background-color: rgb(231, 173, 66);">
+            <img src="/static/content/procesos.png" class="card-img-top" style="height: 55%; width: 67%; margin-inline: auto; margin-top: 16%;">
+            <div class="card-body">
+            <h5 class="card-title" style="text-align:center; margin-top: 5%;">procesos</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="socials" style="padding-bottom: 5%; ">
+    <footer>
+        <button class="redes" id="github">
+            <i class="bi bi-github" style="font-size: larger;"></i>
+        </button>
+        <button class="redes" id="hackthebox">
+            <i class="bi bi-box" style="font-size: larger;"></i>
+        </button>
+        <button class="redes" id="youtube">
+            <i class="bi bi-youtube" style="font-size: larger;"></i>
+        </button>
+        <button class="redes" id="instagram">
+            <i class="bi bi-instagram" style="font-size: larger;"></i>
+        </button>
+        <button class="redes" id="twitter">
+            <i class="bi bi-twitter" style="font-size: larger;"></i>
+        </button>
+
+    </footer>
+</div>
+{% endblock %}
