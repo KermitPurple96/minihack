@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<comandos>
+    <comando nombre="Entorno">Iniciar laboratorio
+        <funcion>En este laboratorio encontrarás desafios que te ayudarán a comprender mejor como funciona un entorno Linux.</funcion>
+        <funcion nombre="param">¿Cómo me conecto?</funcion>
+        <funcion>Simplemente abre una terminal y escribe el siguiente comando:</funcion>
+        <funcion nombre="param">ssh 'nombre del laboratorio'@'ip del laboratorio'</funcion>
+        <funcion>Para ello te pedirá una contraseña que podrás conseguir resolviendo el laboratorio anterior, ej:</funcion>
+    </comando>
+    <comando nombre=" ">
+        <funcion>Qué tipo de shell se está usando?</funcion>
+        <funcion nombre="param">-a, --all</funcion>
+        <funcion>Muestra archivos ocultos, aquellos que comienza su nombre por un ".". Ej: .archivo_secreto</funcion>
+        <funcion nombre="jump" height="10px"></funcion>        
+        <funcion nombre="img">/static/content/lsa.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion>  
+        <funcion nombre="param">-l, (long)</funcion>
+        <funcion>Muestra los permisos de los archivos del directorio en el que nos encontramos</funcion>
+        <funcion nombre="jump" height="10px"></funcion>        
+        <funcion nombre="img">/static/content/lsl.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion>  
+        <funcion nombre="boton"> Iniciar Lab </funcion>
+    </comando>
+</comandos>
