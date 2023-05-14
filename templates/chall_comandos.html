@@ -1,0 +1,336 @@
+{% extends './layout.html' %}
+{% block title %}{% endblock %}
+
+{% block body %}
+<!-- <div class="sidebar">
+    
+    <a href="#home" id="home" style="background-color: #a3a3a3;">All</a>
+
+    
+</div> -->
+
+<div class="content" style="width: 80%;margin-left: 10%;padding-top: 8%; padding-bottom: 16%;">
+    
+    <!-- <form>
+        <input type="text" id="buscar" placeholder="Buscar..." />
+    </form> -->
+    <h2 style="width: 100%; text-align: center; color: orange;margin-bottom: 2%;font-size:4em;">{{ data.titulo }} </h2>
+    <!-- <div class="comando" id="homecontent">
+        <h2 style="color: white;" class="text">Home content</h2>
+        <p class="text">This example use media queries to transform</p>
+        <p class="text">We have also added a media query</p>
+    </div> -->
+    <div class="functions" style="width: 60%; margin: auto; background-color: #4e4c4c; padding: 20px;border-radius:5px;">
+        <h5 style="word-spacing: 5px;font-weight: normal;text-align: center; width: 100%; color: #0bd88d;">ssh mini1@{{ request.host.split(':')[0] }} -p 7000</h5>
+        <p id="fun0" style=" text-align:center; margin-top:20px; color: white; margin-bottom: 5px;">Password: <a style="color:red;">frog</a></p>
+    </div>
+    <script>
+        // peticion XML
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "../static/xml/chall_comandos.xml", true);
+        xhttp.send();
+
+        xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+
+            console.log(this.responseXML);
+            let comandos = this.responseXML.getElementsByTagName('comandos')[0].getElementsByTagName('comando');
+            // var len = this.responseXML.getElementsByTagName( "comando" ).length
+            // console.log(len);
+            console.log(comandos)
+        
+
+            for (i = 0; i < comandos.length; i++) {
+
+                var comando = comandos[i];
+                var title = comando.getAttribute('nombre');
+                
+                console.log(comando)
+                
+                console.log(title)
+                console.log(comando)
+
+                // let sidebar = document.getElementsByClassName('sidebar');
+                // console.log(sidebar);
+
+                // let nav = document.createElement('a');
+                // let barname = comando.getAttribute('nombre');
+                // nav.setAttribute('href', '#' + barname);
+                // nav.setAttribute('id', barname);
+                // nav.setAttribute('class', 'barcom');
+                // console.log(nav);
+
+                // sidebar[0].appendChild(nav);
+                // document.getElementById(barname).innerHTML += barname;
+
+                let content = document.getElementsByClassName('content');
+
+                let nuevoComando = document.createElement('div');
+                nuevoComando.setAttribute('id', title);
+                nuevoComando.setAttribute('class', 'com_div');
+                nuevoComando.setAttribute('style', "width: 60%; margin-left: 20%; margin-top: 5%;");
+
+
+                let titulo = document.createElement('h2');
+                titulo.setAttribute('id', title);
+                titulo.setAttribute('class', 'coman');
+                titulo.setAttribute('style', "color: yellow; margin-bottom: 20px;");
+
+                let functions = document.createElement('div');
+                functions.setAttribute('class', 'functions');
+                functions.setAttribute('style', "background-color: #4e4c4c; padding: 20px;border-radius:5px;");
+
+                titulo.innerHTML += title;
+                console.log(titulo)
+
+
+                // console.log(content[0])
+
+                nuevoComando.appendChild(titulo);
+                nuevoComando.appendChild(functions);
+                content[0].appendChild(nuevoComando);
+
+                let funciones = comando.getElementsByTagName('funcion')
+                
+                console.log(funciones)
+
+                for (j = 0; j < funciones.length; j++) {
+
+                    var funj = 'fun' + j;
+                    
+                    
+                    console.log(funciones.length)
+                    console.log(j)
+                    let funcion = funciones[j];
+                    console.log(funcion)
+
+                    // let params = comando.childNodes[3];
+                    
+                    let test = funcion.getAttribute('nombre');
+                    console.log(test);
+                    
+
+                    if (test == "param") {
+                        let funct = document.createElement('p');
+                        funct.setAttribute('id', funj);
+                        color = funcion.getAttribute('color');
+                        funct.style.color = color;
+                        funct.innerHTML += funcion.textContent;
+                        functions.appendChild(funct);
+                    } 
+                    if (test == "flag") {
+                        let funct = document.createElement('form');
+                       /* funct.setAttribute('class', 'form-inline');*/
+
+                        let funct2 = document.createElement('div');
+                        funct2.setAttribute('style', 'width:100%;display:flex;');
+
+                        let funct3 = document.createElement('label');
+                        funct3.setAttribute('for', 'inputPassword2');
+                        funct3.setAttribute('class', 'sr-only');
+
+                        let funct1 = document.createElement('input');
+                        funct1.setAttribute('type', 'text');
+                        funct1.setAttribute('id', 'inputPassword2');
+                        funct1.setAttribute('placeholder', 'Flag');
+                        funct1.setAttribute('class', 'form-control');
+                        funct1.setAttribute('style', 'width: 40%; height: 38px;');
+
+                        let funct4 = document.createElement('button');
+                        funct4.setAttribute('style', 'width: 15%;;margin-left: 50px;');
+                        funct4.setAttribute('type', 'submit');
+                        funct4.setAttribute('class', 'btn btn-success');
+                        funct4.innerHTML += "enviar";
+
+                        
+                        funct2.appendChild(funct3)
+                        funct2.appendChild(funct1)
+                        funct2.appendChild(funct4)
+                        funct.appendChild(funct2)
+                        
+
+                        functions.appendChild(funct);
+                    } 
+                    else if (test == "img") {
+                        let funct = document.createElement('img');
+                        funct.setAttribute('id', funj);
+                        src = funcion.textContent;
+                        width = funcion.getAttribute('width')
+                        height = funcion.getAttribute('height')
+
+                        funct.setAttribute('src', src);
+                        funct.setAttribute('style', "border-radius:5px;  display: block; margin-left: auto; margin-right: auto;");
+                        funct.style.width = width;
+                        funct.style.height = height;
+                        functions.appendChild(funct);
+                    } 
+                    else if (test == "jump") {
+                        let funct = document.createElement('div');
+                        funct.setAttribute('id', funj);
+                        height = funcion.getAttribute('height')
+                        funct.style.height = height;
+                        functions.appendChild(funct);
+                    }
+                    else if (test == "line") {
+                        let funct = document.createElement('hr');
+                        funct.setAttribute('id', funj);
+                        functions.appendChild(funct);
+                    }
+                    else if (test == "boton") {
+                        let funct = document.createElement('button');
+                        funct.setAttribute('id', funj);
+                        funct.setAttribute('class', "btn btn-warning");
+                        funct.setAttribute('style', "margin-left: 45%;");
+                        funct.innerHTML += funcion.textContent;
+                        functions.appendChild(funct);
+                    }
+                    else if (test == "table") {
+
+                        let table = document.createElement('table');
+                        table.setAttribute('style', "color: white;");
+                        let rows = funcion.getElementsByTagName('tr');
+                        console.log("aqui");
+                        console.log(rows[0]);
+
+                        for (r = 0; r < rows.length; r++) {
+                            row = rows[r]
+                            
+                            let fila = document.createElement('tr');
+                            let cols = row.getElementsByTagName('td');
+                            console.log(cols)
+                            for (c = 0; c < cols.length; c++) {
+                                col = cols[c]
+                                let columna = document.createElement('td');
+                                columna.setAttribute('style', "text-align:center;");
+                                columna.innerHTML += col.textContent
+                                fila.appendChild(columna)
+                            }
+                            table.appendChild(fila);
+                            functions.appendChild(table);
+
+                        }
+                    } 
+                    else {
+                        let funct = document.createElement('p');
+                        funct.setAttribute('id', funj);
+                        funct.setAttribute('style', "color: white; margin-bottom: 5px;");
+                        funct.innerHTML += funcion.textContent;
+                        functions.appendChild(funct);
+
+                    }
+
+                    // console.log("aqui")
+                    // console.log(funct)
+                    // console.log(funcion.textContent);
+                    
+                    
+                    console.log(content[0])
+                };
+
+            };
+            
+        };
+
+        document.getElementById('home').addEventListener('click', home);
+        function home(){
+
+            let elements = document.getElementsByClassName("com_div");
+            for(let i = 0; i < elements.length; i++){
+                
+                elements[i].style.display = "block"
+                
+            }
+
+        }
+
+
+
+        document.getElementById('Permisos rwx').addEventListener('click', rwx);
+        function rwx(){
+
+            let elements = document.getElementsByClassName("com_div");
+            for(let i = 0; i < elements.length; i++){
+                if(elements[i].id.includes("Permisos rwx")){
+                    elements[i].style.display = "block"
+                }
+                else{
+                    elements[i].style.display = "none"
+                }
+            }
+
+        }
+
+        document.getElementById('SUID').addEventListener('click', SUID);
+        function SUID(){
+           
+            let elements = document.getElementsByClassName("com_div");
+            for(let i = 0; i < elements.length; i++){
+                if(elements[i].id.includes("SUID")){
+                    elements[i].style.display = "block"
+                }
+                else{
+                    elements[i].style.display = "none"
+                }
+            }
+
+        }
+
+
+
+        document.getElementById('SGID').addEventListener('click', SGID);
+
+        function SGID(){
+
+            let elements = document.getElementsByClassName("com_div");
+            for(let i = 0; i < elements.length; i++){
+                if(elements[i].id.includes("SGID")){
+                    elements[i].style.display = "block"
+                }
+                else{
+                    elements[i].style.display = "none"
+                }
+            }
+
+        }
+
+
+        document.getElementById('Sticky bit').addEventListener('click', sb);
+
+        function sb(){
+
+            let elements = document.getElementsByClassName("com_div");
+            for(let i = 0; i < elements.length; i++){
+                if(elements[i].id.includes("Sticky bit")){
+                    elements[i].style.display = "block"
+                }
+                else{
+                    elements[i].style.display = "none"
+                }
+            }
+
+        }
+
+    }
+    </script>
+</div>
+<div class="socials" style="padding-bottom: 5%; background-color: #333; width: 80%; margin-left: 10%; position: absolute; bottom: 0;">
+    <footer>
+        <button class="redes" id="github">
+            <i class="bi bi-github" style="font-size: larger;"></i>
+        </button>
+        <button class="redes" id="hackthebox">
+            <i class="bi bi-box" style="font-size: larger;"></i>
+        </button>
+        <button class="redes" id="youtube">
+            <i class="bi bi-youtube" style="font-size: larger;"></i>
+        </button>
+        <button class="redes" id="instagram">
+            <i class="bi bi-instagram" style="font-size: larger;"></i>
+        </button>
+        <button class="redes" id="twitter">
+            <i class="bi bi-twitter" style="font-size: larger;"></i>
+        </button>
+
+    </footer>
+</div>
+{% endblock %}
