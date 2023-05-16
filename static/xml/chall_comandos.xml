@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<comandos>
+    <comando nombre="Lab 1">
+        <funcion>La flag para el siguiente laboratorio la puedes encontrar junto a la palabra "disney"</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="flag" flag="flag1" code="1"></funcion>
+    </comando>
+    <comando nombre="Lab 2">
+        <funcion>Qué tipo de shell se está usando?</funcion>
+        <funcion nombre="param">-a, --all</funcion>
+    </comando>
+</comandos>
