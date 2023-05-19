@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  entorno:
+    build: .
+    image: entorno
+    ports:
+      - "7000:22"
+    tty: true
+    cap_add:
+      - LINUX_IMMUTABLE
+    entrypoint: bash -c "/usr/share/scripts/chattr.sh" && /bin/bash
