@@ -25,24 +25,6 @@ modulos = ['home','entorno', 'comandos', 'usuarios', 'networking', 'archivos', '
 def hello():
     return redirect("/home", code=302)
 
-#@socketio.on('event')
-#def event(flag, code):
-#    print("data recibida: " + flag + code)
-#    emit('event', 'RECIBIDO');
-#    cur = mysql.connection.cursor()
-#    flag_id = "SELECT flag FROM flags WHERE flag_id = '%d';"
-#    data = (code)
-#    cur.execute(flag_id, data)
-#    mysql.connection.commit()
-
-#    if flag == flag_id:
-#        cur.execute("UPDATE users SET flag_%d = True WHERE username = '%s';", (code, session['username']))
-#        cur.close()
-       
-#    else:
-#        cur.close()
-
-
 #LANDING
 
 @app.route("/home", methods=['POST', 'GET'])
@@ -82,9 +64,11 @@ def register():
         if email and username and pass1 and pass2 and pass1 == pass2:
 
             cur = mysql.connection.cursor()
-            sql = "INSERT INTO users (username, email, password) VALUES (%s, %s, %s)"
-            data = (username, email, pass1)
-            cur.execute(sql, data)
+            cur.execute("INSERT INTO users (username, email, password, flag_1, flag_2, flag_3, flag_4, flag_5, flag_entorno_1, flag_entorno_2, flag_entorno_3, flag_entorno_4, flag_entorno_5, flag_usuarios_1, flag_usuarios_2, flag_usuarios_3, flag_usuarios_4, flag_usuarios_5, flag_networking_1, flag_networking_2, flag_networking_3, flag_networking_4, flag_networking_5, flag_archivos_1, flag_archivos_2, flag_archivos_3, flag_archivos_4, flag_archivos_5, flag_procesos_1, flag_procesos_2, flag_procesos_3, flag_procesos_4, flag_procesos_5) VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(username, email, pass1, '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'))
+            #data = (username, email, pass1, '0', '0', '0', '0', '0')
+            #cur.execute("UPDATE users SET {} = {} WHERE username = '{}'".format(num_flag, one, username))
+            
+            #cur.execute(sql, data)
             mysql.connection.commit()
             
             session['email'] = email
@@ -207,14 +191,232 @@ def challengesssh():
     }
     return render_template('conexion_ssh.html', data=data)
 
+
+# CHALLENGES_ENTORNO
+
 @app.route('/challenges/entorno', methods=['POST', 'GET'])
 def chall_entorno():
     data = {
         'titulo': modulos[1],
         'modulos': modulos
     }
-    return render_template('chall_entorno.html', data=data)
+    data_flags = []
+    data_sols = []
+    num = ""
+    flag = ""
 
+    if request.method == "POST":
+
+        num = request.form['num']
+        print("NUM")
+        print(num)
+        flag = request.form['flag']
+        username = session['username']
+        print(username)
+
+        #Clave para conectarse al siguiente nivel
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT sol_entorno FROM flags")
+        sol = cur.fetchall()
+        cur.close()           
+
+        #Flags
+        flgs = mysql.connection.cursor()
+        flgs.execute("SELECT flag_entorno FROM flags")
+        fl = flgs.fetchall()
+        cur.close()
+        #print(fl)
+        #print(own_flags)
+        #print(sol)
+        owned_flags = []
+        owned_sols = []
+        j = 0
+
+        if flag:
+            cur = mysql.connection.cursor()
+            cur.execute("SELECT flag_entorno FROM flags WHERE flag_id = %s", (num))
+            real_flag = cur.fetchone()
+
+            one = '1'
+            num_flag = ("flag_entorno_" + num)
+            print(one)
+            print(num_flag)
+            username = session['username']
+            print(username)
+
+            #Flags que ya ha conseguido el usuario (0 o 1)
+            #mysql.connection.commit()
+            #cur.close()
+            #cur = mysql.connection.cursor()
+            #cur.execute("SELECT flag_1,flag_2,flag_3,flag_4,flag_5 FROM users where username = %s", [username])
+            #own_flags = []
+            #own_flags = cur.fetchall()[0]
+            print("DDD")
+            print(real_flag[0])
+            print(flag)
+
+            if real_flag[0] == flag:
+
+                #El usuario a conseguido una nueva flag ->
+                cur = mysql.connection.cursor()
+                cur.execute("UPDATE users SET {} = {} WHERE username = '{}'".format(num_flag, one, username))
+                mysql.connection.commit()
+                cur.close()
+
+                cur = mysql.connection.cursor()
+                cur.execute("SELECT flag_entorno_1,flag_entorno_2,flag_entorno_3,flag_entorno_4,flag_entorno_5 FROM users where username = %s", [username])
+                own_flags = []
+                own_flags = cur.fetchall()[0]
+                print("OWN FLAGS")
+                print(own_flags)
+
+                for i in own_flags:
+                    print(i)
+                    if i != 0:
+                        owned_flags.append(fl[j])
+                        owned_sols.append(sol[j])
+                    else:
+                        owned_flags.append("0")
+                        owned_sols.append("0")
+                    j += 1
+
+
+
+                for elemento in owned_flags:
+                    if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                        data_flags.append(elemento[0])
+                    elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                        data_flags.append(elemento[1:-1])
+                    elif isinstance(elemento, str) and elemento.isdigit():
+                        data_flags.append(elemento)
+                
+                for elemento in owned_sols:
+                    if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                        data_sols.append(elemento[0])
+                    elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                        data_sols.append(elemento[1:-1])
+                    elif isinstance(elemento, str) and elemento.isdigit():
+                        data_sols.append(elemento)
+                            
+                            
+                print(data_flags)
+                print(data_sols)
+                
+
+                return render_template('chall_entorno.html', data=data, num=num, code='1', flag=flag, data_sols=data_sols, data_flags=data_flags)
+            
+            else:
+
+                cur = mysql.connection.cursor()
+                cur.execute("SELECT flag_entorno_1,flag_entorno_2,flag_entorno_3,flag_entorno_4,flag_entorno_5 FROM users where username = %s", [username])
+                own_flags = []
+                own_flags = cur.fetchall()[0]
+                print("OWN FLAGS")
+                print(own_flags)
+
+
+                for i in own_flags:
+                    print(i)
+                    if i != 0:
+                        owned_flags.append(fl[j])
+                        owned_sols.append(sol[j])
+                    else:
+                        owned_flags.append("0")
+                        owned_sols.append("0")
+                    j += 1
+
+
+
+                for elemento in owned_flags:
+                    if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                        data_flags.append(elemento[0])
+                    elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                        data_flags.append(elemento[1:-1])
+                    elif isinstance(elemento, str) and elemento.isdigit():
+                        data_flags.append(elemento)
+                
+                for elemento in owned_sols:
+                    if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                        data_sols.append(elemento[0])
+                    elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                        data_sols.append(elemento[1:-1])
+                    elif isinstance(elemento, str) and elemento.isdigit():
+                        data_sols.append(elemento)
+                            
+                            
+                print(data_flags)
+                print(data_sols)
+                return render_template('chall_entorno.html', data=data, num=num, code='0', flag=flag, data_flags=data_flags, data_sols=data_sols)
+    
+    else:
+
+        username = session['username']
+
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT flag_entorno_1,flag_entorno_2,flag_entorno_3,flag_entorno_4,flag_entorno_5 FROM users where username = %s", [username])
+        own_flags = []
+        own_flags = cur.fetchall()[0]
+        print("OWN FLAGS")
+        print(own_flags)
+
+
+        #Clave para conectarse al siguiente nivel
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT sol_entorno FROM flags")
+        sol = cur.fetchall()
+        cur.close()
+
+                #Flags
+        flgs = mysql.connection.cursor()
+        flgs.execute("SELECT flag_entorno FROM flags")
+        fl = flgs.fetchall()
+        cur.close()
+        #print(fl)
+        #print(own_flags)
+        #print(sol)
+        owned_flags = []
+        owned_sols = []
+        j = 0
+        print("own_flags")
+        print(own_flags)
+
+        for i in own_flags:
+            print(i)
+            if i != 0:
+                owned_flags.append(fl[j])
+                owned_sols.append(sol[j])
+            else:
+                owned_flags.append("0")
+                owned_sols.append("0")
+            j += 1
+
+        print("owned_flags")
+        print(owned_flags)
+
+        for elemento in owned_flags:
+            if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                data_flags.append(elemento[0])
+            elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                data_flags.append(elemento[1:-1])
+            elif isinstance(elemento, str) and elemento.isdigit():
+                data_flags.append(elemento)
+        
+        for elemento in owned_sols:
+            if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                data_sols.append(elemento[0])
+            elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                data_sols.append(elemento[1:-1])
+            elif isinstance(elemento, str) and elemento.isdigit():
+                data_sols.append(elemento)
+                    
+                    
+        print(data_flags)
+        print(data_sols)
+
+        return render_template('chall_entorno.html', data=data, num=num, code='2', flag=flag, data_flags=data_flags, data_sols=data_sols)
+
+
+# CHALLENGES_COMANDOS
 
 @app.route('/challenges/comandos', methods=['POST', 'GET'])
 def chall_comandos():
@@ -223,36 +425,438 @@ def chall_comandos():
         'modulos': modulos,
     }
 
-    username = session['username']
-    print(username)
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT flag_1, flag_2, flag_3, flag_4, flag_5 FROM users WHERE username = '{username}'")
-    own_flags = []
-    own_flags = cur.fetchone()
-    cur.close()
-    print(type(own_flags))
-    
+    data_flags = []
+    data_sols = []
+    num = ""
+    flag = ""
 
     if request.method == "POST":
 
         num = request.form['num']
+        print("NUM")
+        print(num)
         flag = request.form['flag']
-        if flag:
+        username = session['username']
+        print(username)
 
+        #Clave para conectarse al siguiente nivel
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT sol_comandos FROM flags")
+        sol = cur.fetchall()
+        cur.close()           
+
+        #Flags
+        flgs = mysql.connection.cursor()
+        flgs.execute("SELECT flag_comandos FROM flags")
+        fl = flgs.fetchall()
+        cur.close()
+        #print(fl)
+        #print(own_flags)
+        #print(sol)
+        owned_flags = []
+        owned_sols = []
+        j = 0
+
+        if flag:
             cur = mysql.connection.cursor()
             cur.execute("SELECT flag_comandos FROM flags WHERE flag_id = %s", (num))
             real_flag = cur.fetchone()
+
+            one = '1'
+            num_flag = ("flag_" + num)
+            print(one)
+            print(num_flag)
+            username = session['username']
+            print(username)
+
+            #Flags que ya ha conseguido el usuario (0 o 1)
+            #mysql.connection.commit()
+            #cur.close()
+            #cur = mysql.connection.cursor()
+            #cur.execute("SELECT flag_1,flag_2,flag_3,flag_4,flag_5 FROM users where username = %s", [username])
+            #own_flags = []
+            #own_flags = cur.fetchall()[0]
+            print("DDD")
             print(real_flag[0])
             print(flag)
-            cur.close()
-            if real_flag[0] == flag:
-                return render_template('chall_comandos.html', data=data, num=num, code='1', flag=flag)
-            else:
-                return render_template('chall_comandos.html', data=data, num=num, code='0')
-    else:
-        return render_template('chall_comandos.html', data=data)
 
-@app.get('/challenges/networking')
+            if real_flag[0] == flag:
+
+                #El usuario a conseguido una nueva flag ->
+                cur = mysql.connection.cursor()
+                cur.execute("UPDATE users SET {} = {} WHERE username = '{}'".format(num_flag, one, username))
+                mysql.connection.commit()
+                cur.close()
+
+                cur = mysql.connection.cursor()
+                cur.execute("SELECT flag_1,flag_2,flag_3,flag_4,flag_5 FROM users where username = %s", [username])
+                own_flags = []
+                own_flags = cur.fetchall()[0]
+
+                for i in own_flags:
+                    print(i)
+                    if i != '0':
+                        owned_flags.append(fl[j])
+                        owned_sols.append(sol[j])
+                    else:
+                        owned_flags.append("0")
+                        owned_sols.append("0")
+                    j += 1
+
+
+
+                for elemento in owned_flags:
+                    if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                        data_flags.append(elemento[0])
+                    elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                        data_flags.append(elemento[1:-1])
+                    elif isinstance(elemento, str) and elemento.isdigit():
+                        data_flags.append(elemento)
+                
+                for elemento in owned_sols:
+                    if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                        data_sols.append(elemento[0])
+                    elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                        data_sols.append(elemento[1:-1])
+                    elif isinstance(elemento, str) and elemento.isdigit():
+                        data_sols.append(elemento)
+                            
+                            
+                print(data_flags)
+                print(data_sols)
+                
+
+                return render_template('chall_comandos.html', data=data, num=num, code='1', flag=flag, data_sols=data_sols, data_flags=data_flags)
+            else:
+
+                cur = mysql.connection.cursor()
+                cur.execute("SELECT flag_1,flag_2,flag_3,flag_4,flag_5 FROM users where username = %s", [username])
+                own_flags = []
+                own_flags = cur.fetchall()[0]
+
+                for i in own_flags:
+                    print(i)
+                    if i != '0':
+                        owned_flags.append(fl[j])
+                        owned_sols.append(sol[j])
+                    else:
+                        owned_flags.append("0")
+                        owned_sols.append("0")
+                    j += 1
+
+
+
+                for elemento in owned_flags:
+                    if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                        data_flags.append(elemento[0])
+                    elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                        data_flags.append(elemento[1:-1])
+                    elif isinstance(elemento, str) and elemento.isdigit():
+                        data_flags.append(elemento)
+                
+                for elemento in owned_sols:
+                    if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                        data_sols.append(elemento[0])
+                    elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                        data_sols.append(elemento[1:-1])
+                    elif isinstance(elemento, str) and elemento.isdigit():
+                        data_sols.append(elemento)
+                            
+                            
+                print(data_flags)
+                print(data_sols)
+                return render_template('chall_comandos.html', data=data, num=num, code='0', flag=flag, data_flags=data_flags, data_sols=data_sols)
+    else:
+        username = session['username']
+
+
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT flag_1,flag_2,flag_3,flag_4,flag_5 FROM users where username = %s", [username])
+        own_flags = []
+        own_flags = cur.fetchall()[0]
+
+        #Clave para conectarse al siguiente nivel
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT sol_comandos FROM flags")
+        sol = cur.fetchall()
+        cur.close()
+
+                #Flags
+        flgs = mysql.connection.cursor()
+        flgs.execute("SELECT flag_comandos FROM flags")
+        fl = flgs.fetchall()
+        cur.close()
+        #print(fl)
+        #print(own_flags)
+        #print(sol)
+        owned_flags = []
+        owned_sols = []
+        j = 0
+
+        for i in own_flags:
+            print(i)
+            if i != '0':
+                owned_flags.append(fl[j])
+                owned_sols.append(sol[j])
+            else:
+                owned_flags.append("0")
+                owned_sols.append("0")
+            j += 1
+
+
+
+        for elemento in owned_flags:
+            if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                data_flags.append(elemento[0])
+            elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                data_flags.append(elemento[1:-1])
+            elif isinstance(elemento, str) and elemento.isdigit():
+                data_flags.append(elemento)
+        
+        for elemento in owned_sols:
+            if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                data_sols.append(elemento[0])
+            elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                data_sols.append(elemento[1:-1])
+            elif isinstance(elemento, str) and elemento.isdigit():
+                data_sols.append(elemento)
+                    
+                    
+        print(data_flags)
+        print(data_sols)
+
+        return render_template('chall_comandos.html', data=data, num=num, code='2', flag=flag, data_flags=data_flags, data_sols=data_sols)
+
+
+
+# CHALLENGES_USUARIOS
+
+
+@app.route('/challenges/usuarios', methods=['POST', 'GET'])
+def chall_usuarios():
+    data = {
+        'titulo': modulos[3],
+        'modulos': modulos
+    }
+    data_flags = []
+    data_sols = []
+    num = ""
+    flag = ""
+
+    if request.method == "POST":
+
+        num = request.form['num']
+        print("NUM")
+        print(num)
+        flag = request.form['flag']
+        username = session['username']
+        print(username)
+
+        #Clave para conectarse al siguiente nivel
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT sol_usuarios FROM flags")
+        sol = cur.fetchall()
+        cur.close()           
+
+        #Flags
+        flgs = mysql.connection.cursor()
+        flgs.execute("SELECT flag_usuarios FROM flags")
+        fl = flgs.fetchall()
+        cur.close()
+        #print(fl)
+        #print(own_flags)
+        #print(sol)
+        owned_flags = []
+        owned_sols = []
+        j = 0
+
+        if flag:
+            cur = mysql.connection.cursor()
+            cur.execute("SELECT flag_usuarios FROM flags WHERE flag_id = %s", (num))
+            real_flag = cur.fetchone()
+
+            one = '1'
+            num_flag = ("flag_usuarios_" + num)
+            print(one)
+            print(num_flag)
+            username = session['username']
+            print(username)
+
+            #Flags que ya ha conseguido el usuario (0 o 1)
+            #mysql.connection.commit()
+            #cur.close()
+            #cur = mysql.connection.cursor()
+            #cur.execute("SELECT flag_1,flag_2,flag_3,flag_4,flag_5 FROM users where username = %s", [username])
+            #own_flags = []
+            #own_flags = cur.fetchall()[0]
+            print("DDD")
+            print(real_flag[0])
+            print(flag)
+
+            if real_flag[0] == flag:
+
+                #El usuario a conseguido una nueva flag ->
+                cur = mysql.connection.cursor()
+                cur.execute("UPDATE users SET {} = {} WHERE username = '{}'".format(num_flag, one, username))
+                mysql.connection.commit()
+                cur.close()
+
+                cur = mysql.connection.cursor()
+                cur.execute("SELECT flag_usuarios_1,flag_usuarios_2,flag_usuarios_3,flag_usuarios_4,flag_usuarios_5 FROM users where username = %s", [username])
+                own_flags = []
+                own_flags = cur.fetchall()[0]
+                print("OWN FLAGS")
+                print(own_flags)
+
+                for i in own_flags:
+                    print(i)
+                    if i != 0:
+                        owned_flags.append(fl[j])
+                        owned_sols.append(sol[j])
+                    else:
+                        owned_flags.append("0")
+                        owned_sols.append("0")
+                    j += 1
+
+
+
+                for elemento in owned_flags:
+                    if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                        data_flags.append(elemento[0])
+                    elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                        data_flags.append(elemento[1:-1])
+                    elif isinstance(elemento, str) and elemento.isdigit():
+                        data_flags.append(elemento)
+                
+                for elemento in owned_sols:
+                    if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                        data_sols.append(elemento[0])
+                    elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                        data_sols.append(elemento[1:-1])
+                    elif isinstance(elemento, str) and elemento.isdigit():
+                        data_sols.append(elemento)
+                            
+                            
+                print(data_flags)
+                print(data_sols)
+                
+
+                return render_template('chall_usuarios.html', data=data, num=num, code='1', flag=flag, data_sols=data_sols, data_flags=data_flags)
+            
+            else:
+
+                cur = mysql.connection.cursor()
+                cur.execute("SELECT flag_usuarios_1,flag_usuarios_2,flag_usuarios_3,flag_usuarios_4,flag_usuarios_5 FROM users where username = %s", [username])
+                own_flags = []
+                own_flags = cur.fetchall()[0]
+                print("OWN FLAGS")
+                print(own_flags)
+
+
+                for i in own_flags:
+                    print(i)
+                    if i != 0:
+                        owned_flags.append(fl[j])
+                        owned_sols.append(sol[j])
+                    else:
+                        owned_flags.append("0")
+                        owned_sols.append("0")
+                    j += 1
+
+
+
+                for elemento in owned_flags:
+                    if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                        data_flags.append(elemento[0])
+                    elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                        data_flags.append(elemento[1:-1])
+                    elif isinstance(elemento, str) and elemento.isdigit():
+                        data_flags.append(elemento)
+                
+                for elemento in owned_sols:
+                    if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                        data_sols.append(elemento[0])
+                    elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                        data_sols.append(elemento[1:-1])
+                    elif isinstance(elemento, str) and elemento.isdigit():
+                        data_sols.append(elemento)
+                            
+                            
+                print(data_flags)
+                print(data_sols)
+                return render_template('chall_usuarios.html', data=data, num=num, code='0', flag=flag, data_flags=data_flags, data_sols=data_sols)
+    
+    else:
+
+        username = session['username']
+
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT flag_usuarios_1,flag_usuarios_2,flag_usuarios_3,flag_usuarios_4,flag_usuarios_5 FROM users where username = %s", [username])
+        own_flags = []
+        own_flags = cur.fetchall()[0]
+        print("OWN FLAGS")
+        print(own_flags)
+
+
+        #Clave para conectarse al siguiente nivel
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT sol_usuarios FROM flags")
+        sol = cur.fetchall()
+        cur.close()
+
+                #Flags
+        flgs = mysql.connection.cursor()
+        flgs.execute("SELECT flag_usuarios FROM flags")
+        fl = flgs.fetchall()
+        cur.close()
+        #print(fl)
+        #print(own_flags)
+        #print(sol)
+        owned_flags = []
+        owned_sols = []
+        j = 0
+        print("own_flags")
+        print(own_flags)
+
+        for i in own_flags:
+            print(i)
+            if i != 0:
+                owned_flags.append(fl[j])
+                owned_sols.append(sol[j])
+            else:
+                owned_flags.append("0")
+                owned_sols.append("0")
+            j += 1
+
+        print("owned_flags")
+        print(owned_flags)
+
+        for elemento in owned_flags:
+            if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                data_flags.append(elemento[0])
+            elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                data_flags.append(elemento[1:-1])
+            elif isinstance(elemento, str) and elemento.isdigit():
+                data_flags.append(elemento)
+        
+        for elemento in owned_sols:
+            if isinstance(elemento, tuple) and len(elemento) == 1 and isinstance(elemento[0], str):
+                data_sols.append(elemento[0])
+            elif isinstance(elemento, str) and elemento.startswith("'") and elemento.endswith("'"):
+                data_sols.append(elemento[1:-1])
+            elif isinstance(elemento, str) and elemento.isdigit():
+                data_sols.append(elemento)
+                    
+                    
+        print(data_flags)
+        print(data_sols)
+
+        return render_template('chall_usuarios.html', data=data, num=num, code='2', flag=flag, data_flags=data_flags, data_sols=data_sols)
+
+
+    return render_template('chall_usuarios.html', data=data)
+
+@app.route('/challenges/networking', methods=['POST', 'GET'])
 def chall_networking():
     data = {
         'titulo': modulos[4],
@@ -260,7 +864,7 @@ def chall_networking():
     }
     return render_template('chall_networking.html', data=data)
 
-@app.get('/challenges/procesos')
+@app.route('/challenges/procesos', methods=['POST', 'GET'])
 def chall_procesos():
     data = {
         'titulo': modulos[6],
@@ -268,15 +872,7 @@ def chall_procesos():
     }
     return render_template('chall_procesos.html', data=data)
 
-@app.get('/challenges/usuarios')
-def chall_usuarios():
-    data = {
-        'titulo': modulos[3],
-        'modulos': modulos
-    }
-    return render_template('chall_usuarios.html', data=data)
-
-@app.get('/challenges/archivos')
+@app.route('/challenges/archivos', methods=['POST', 'GET'])
 def chall_archivos():
     data = {
         'titulo': modulos[5],
