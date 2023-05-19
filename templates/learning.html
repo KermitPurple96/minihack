@@ -1,0 +1,56 @@
+{% extends './layout.html' %}
+{% block title %}challenges{% endblock %}
+
+{% block body %}
+<div class="content" style="width: 80%;margin-left: 10%;padding-top: 6%; padding-bottom: 13%;">
+    <h2 style="width: 100%; text-align: center; color: #0bd88d;margin-bottom: 2%;font-size:4em;">Learn</h2>
+    
+    <div class="cartas">
+        <div class="card" onclick="window.location.href='{{ url_for('entorno') }}';" id="card2" style="background-color: #0bd88d;">
+            <img src="/static/content/entorno.png" class="card-img-top" style="height: 45%; width: 50%; margin-inline: auto; margin-top: 15%; ">
+            <div class="card-body">
+            <h5 class="card-title" style="text-align:center; margin-top: 5%;">entorno</h5>
+            <p class="card-text" style="text-align: center;">Entorno de usuario en Linux</p>
+            </div>
+        </div>
+        <div class="card" onclick="window.location.href='{{ url_for('comandos') }}';" id="card1" style="background-color: #0bd88d;">
+            <img src="/static/content/comandos.png" class="card-img-top" style="height: 30%; width: 70%; margin-inline: auto; margin-top: 25%;margin-bottom: 2%;">
+            <div class="card-body">
+            <h5 class="card-title" style="text-align:center; margin-top: 12%;">comandos</h5>
+            <p class="card-text" style="text-align: center;">Comandos básicos del sistema</p>
+            </div>
+        </div>
+        <div class="card" onclick="window.location.href='{{ url_for('usuarios') }}';" id="card2" style="background-color: #0bd88d;">
+            <img src="/static/content/usuarios.png" class="card-img-top" style="height: 50%; width: 70%; margin-inline: auto; margin-top: 15%;">
+            <div class="card-body">
+            <h5 class="card-title" style="text-align:center; margin-top: 5%;">usuarios</h5>
+            <p class="card-text" style="text-align: center;">Permisos de usuario y grupos</p>
+            </div>
+        </div>
+    </div>
+    <div class="cartas">
+        <div class="card" onclick="window.location.href='{{ url_for('networking') }}';" id="card1" style="background-color: #0bd88d;">
+            <img src="/static/content/net.png" class="card-img-top" style="height: 45%; width: 72%; margin-inline: auto; margin-top: 15%;margin-bottom: 2%;">
+            <div class="card-body">
+            <h5 class="card-title" style="text-align:center; margin-top: 5%;">networking</h5>
+            <p class="card-text" style="text-align: center;">Comandos para servicios en red</p>
+            </div>
+        </div>
+        <div class="card" onclick="window.location.href='{{ url_for('archivos') }}';" id="card2" style="background-color: #0bd88d;">
+            <img src="/static/content/archivos.png" class="card-img-top" style="height: 50%; width: 65%; margin-inline: auto; margin-top: 15%;">
+            <div class="card-body">
+            <h5 class="card-title" style="text-align:center; margin-top: 5%;">archivos</h5>
+            <p class="card-text" style="text-align: center;">Utilidades de directorios y archivos del sistema</p>
+            </div>
+        </div>
+        <div class="card" onclick="window.location.href='{{ url_for('procesos') }}';" id="card2" style="background-color: #0bd88d;">
+            <img src="/static/content/procesos.png" class="card-img-top" style="height: 50%; width: 67%; margin-inline: auto; margin-top: 5%;">
+            <div class="card-body">
+            <h5 class="card-title" style="text-align:center; margin-top: 1%;">procesos</h5>
+            <p class="card-text" style="text-align: center;">Procesos y servicios de sistemas Linux</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
