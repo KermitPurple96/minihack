@@ -1,0 +1,557 @@
+{% extends './layout.html' %}
+{% block title %}{% endblock %}
+
+{% block body %}
+<!-- <div class="sidebar">
+    
+    <a href="#home" id="home" style="background-color: #a3a3a3;">All</a>
+
+    
+</div> -->
+
+
+<div class="content" style="width: 80%;margin-left: 10%;padding-top: 8%; padding-bottom: 16%;">
+    
+    <!-- <form>
+        <input type="text" id="buscar" placeholder="Buscar..." />
+    </form> -->
+    <h2 style="width: 100%; text-align: center; color: orange;margin-bottom: 2%;font-size:4em;">{{ data.titulo }} </h2>
+    
+    <!-- <div class="comando" id="homecontent">
+        <h2 style="color: white;" class="text">Home content</h2>
+        <p class="text">This example use media queries to transform</p>
+        <p class="text">We have also added a media query</p>
+    </div> -->
+    {% if message %}
+    <div style="width: 60%; margin: auto; margin-top: 10%; background-color: #4e4c4c; padding: 10px;border-radius:5px;">
+        <p id="fun0" style=" text-align:center; width:70%; margin-inline:auto;color: white; margin-bottom: 5px;">{{ message }}</a></p>
+        <div style="width: 100%;text-align:center; margin-top: 20px;">
+            <a style="text-align:center; margin-inline: 5%; color: #0bd88d" href="/register">Sign up</a>
+            <a style="text-align:center; margin-inline: 5%;color: #0bd88d" href="/login">Login</a>
+        </div>
+    </div>
+    {% else %}   
+    <div style="width: 60%; margin: auto; background-color: #4e4c4c; padding: 10px;border-radius:5px;">
+        <p id="fun0" style=" text-align:center; width:70%; margin-top:20px; margin-bottom:20px; margin-inline:auto;color: white; margin-bottom: 5px;">Para cada challenge te tendrás que conectar como el usuario correspondiente de cada uno, para el challenge 1 como mini1, para el challenge 2 como mini2... Ej:</a></p>
+        <h5 style="word-spacing: 5px;margin-top:20px;font-weight: normal;text-align: center; width: 100%; color: #0bd88d;">ssh mini1@10.10.10.10 -p 1234</h5>
+        <p id="fun0" style=" text-align:center; width:70%; margin-top:20px; margin-bottom:20px; margin-inline:auto;color: white; margin-bottom: 5px;">Cada categoría de challenges usa un puerto distinto, por ejemplo en la categoria <a style="color:orange;">entorno</a> siempre usarás el puerto <a style="color:orange;">6000</a>, aquí tienes la IP, puerto y primera password para comenzar, buena suerte ;)</a></p>
+    </div>
+    <p></p>
+        <div style="width: 60%; margin: auto; background-color: #4e4c4c; padding: 10px;border-radius:5px;">
+            <p id="fun0" style=" text-align:center; margin-top:10px; color: white; margin-bottom: 5px;">IP: <a style="color:red;"> {{ request.host.split(':')[0] }}</a></p>
+            <p id="fun0" style=" text-align:center; margin-top:10px; color: white; margin-bottom: 5px;">Puerto: <a style="color:red;"> 7000</a></p>
+            <p id="fun0" style=" text-align:center; margin-top:10px; color: white; margin-bottom: 5px;">Password de mini1: <a style="color:red;"> frog</a></p>
+        </div>
+    {% endif %}
+
+
+    <!-- CONEXION PARA LA FLAG -->
+
+<!--
+        <script type="text/javascript" charset="utf-8">
+
+            var socket = io()
+
+            function send(){
+                let flag = document.getElementById('flag1').value;
+                let code = document.getElementById('flag1').getAttribute('code');
+                console.log(code);
+                console.log(flag);
+                socket.emit('event', (flag, code));
+            }
+
+            socket.on('connect', function(){
+                console.log("conectados")
+
+                socket.on('event',function(res){
+                    console.log(res)
+                })
+            })
+            socket.on('disconnect', function(){
+                console.log("desconectados")
+            })
+
+
+  
+        </script> -->
+
+    <!-- CONTENIDO DEL XML -->
+
+    <input type="hidden"  id="my_variable" value="{{ code }}">
+    <input type="hidden"  id="my_variable2" value="{{ num }}">
+    <input type="hidden"  id="my_variable3" value="{{ flag }}">
+    <input type="hidden"  id="my_variable4" value="{{ data_flags }}">
+    <input type="hidden"  id="my_variable5" value="{{ data_sols }}">
+
+    {% if session['username'] %}
+        <script>
+            // peticion XML
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "../static/xml/chall_usuarios.xml", true);
+            xhttp.send();
+
+            xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+                console.log(this.responseXML);
+                let comandos = this.responseXML.getElementsByTagName('comandos')[0].getElementsByTagName('comando');
+                // var len = this.responseXML.getElementsByTagName( "comando" ).length
+                // console.log(len);
+                // console.log(comandos)
+            
+            
+
+                for (i = 0; i < comandos.length; i++) {
+
+                    var comando = comandos[i];
+                    var title = comando.getAttribute('nombre');
+                    var ref = comando.getAttribute('ref');
+
+                    let content = document.getElementsByClassName('content');
+
+                    let nuevoComando = document.createElement('div');
+                    nuevoComando.setAttribute('name', ref);
+                    nuevoComando.setAttribute('class', 'com_div');
+                    nuevoComando.setAttribute('style', "width: 60%; margin-left: 20%; margin-top: 5%;");
+                    
+                    var code = document.querySelector('#my_variable').value
+                    var num = document.querySelector('#my_variable2').value
+                    var flag = document.querySelector('#my_variable3').value
+                    var own_flags = document.querySelector('#my_variable4').value
+                    var sol = document.querySelector('#my_variable5').value
+                    var ejercicio = document.getElementById('lab'+num)
+                    //var ref = comando.getAttribute('ref');
+                    //let content = document.getElementsByClassName('content');
+
+                    //console.log("codigo de estado")
+                    //console.log(code)
+                    //console.log("NUM")
+                    //console.log(num)
+                    //console.log("flag")
+                    //console.log(flag)
+                    //console.log("REF")
+                    //console.log(ref)
+                    console.log("aqui")
+                    console.log(sol)
+                    console.log("aqui")
+                    let zero = "0"
+                    let one = "1"
+                    let two = "2"
+
+                    
+                    if (code == zero && num == ref) {
+
+                        //console.log("INCORRECTA")
+                        let div = document.createElement('div');
+                        div.setAttribute('class', 'alert alert-danger alert-dismissible fade show');
+                        div.setAttribute('style', 'width:40%;margin:auto;');
+                        div.setAttribute('role', 'alert');
+
+                        let a1 = document.createElement('a')
+                        let a2 = document.createElement('a')
+                        let strong = document.createElement('strong')
+                        a1.innerHTML += "Flag de Lab ";
+                        strong.innerHTML += "Lab ";
+                        strong.innerHTML += num;
+                        a2.innerHTML += " incorrecta! ";
+                        let pha = document.createElement('strong')
+                        pha.innerHTML += flag
+
+                        let button = document.createElement('button')
+                        button.setAttribute('type', 'button')
+                        button.setAttribute('class', 'btn-close')
+                        button.setAttribute('data-bs-dismiss', 'alert')
+                        button.setAttribute('aria-label', 'Close')
+
+                        div.appendChild(a1)
+                        div.appendChild(strong)
+                        div.appendChild(a2)
+                        div.appendChild(button)
+                        div.appendChild(pha)
+
+                        nuevoComando.appendChild(div)
+
+
+                    } else if(code == one && num == ref){
+
+                        //Felicitacion
+                        console.log("CORRECTA")
+                        let div = document.createElement('div');
+                        div.setAttribute('class', 'alert alert-success alert-dismissible fade show');
+                        div.setAttribute('style', 'width:40%;margin:auto;');
+                        div.setAttribute('role', 'alert');
+
+                        let a1 = document.createElement('a')
+                        let a2 = document.createElement('a')
+                        let strong = document.createElement('strong')
+                        a1.innerHTML += "Flag de Lab ";
+                        strong.innerHTML += "Lab ";
+                        strong.innerHTML += num;
+                        a2.innerHTML += " correcta! ";
+                        let pha = document.createElement('strong')
+                        pha.innerHTML += flag
+
+                        let button = document.createElement('button')
+                        button.setAttribute('type', 'button')
+                        button.setAttribute('class', 'btn-close')
+                        button.setAttribute('data-bs-dismiss', 'alert')
+                        button.setAttribute('aria-label', 'Close')
+
+                        div.appendChild(a1)
+                        div.appendChild(strong)
+                        div.appendChild(a2)
+                        div.appendChild(button)
+                        div.appendChild(pha)
+                        nuevoComando.appendChild(div)
+
+                        //Clave para el siguiente lab
+
+                        let divB = document.createElement('div');
+                        divB.setAttribute('class', 'alert alert-success alert-dismissible fade show');
+                        divB.setAttribute('style', 'width:40%;margin:auto;');
+                        divB.setAttribute('role', 'alert');
+
+                        let a1B = document.createElement('a')
+                        let a2B = document.createElement('a')
+                        let strongB = document.createElement('strong')
+                        a1B.innerHTML += "Puedes conectarte al siguiente Lab usando esta password";
+                        strongB.innerHTML += sol;
+                        let phaB = document.createElement('strong')
+
+                        let buttonB = document.createElement('button')
+                        buttonB.setAttribute('type', 'button')
+                        buttonB.setAttribute('class', 'btn-close')
+                        buttonB.setAttribute('data-bs-dismiss', 'alert')
+                        buttonB.setAttribute('aria-label', 'Close')
+
+                        divB.appendChild(a1B)
+                        divB.appendChild(strongB)
+                        divB.appendChild(a2B)
+                        divB.appendChild(buttonB)
+                        divB.appendChild(phaB)
+
+                        let test = document.getElementsByClassName('com_div')
+                    
+                    
+                    } 
+
+                    let titulo = document.createElement('h2');
+                    titulo.setAttribute('id', title);
+                    titulo.setAttribute('class', 'coman');
+                    titulo.setAttribute('style', "color: yellow; margin-bottom: 20px;");
+
+                    let functions = document.createElement('div');
+                    functions.setAttribute('class', 'functions');
+                    functions.setAttribute('style', "background-color: #4e4c4c; padding: 20px;border-radius:5px;");
+
+                    titulo.innerHTML += title;
+
+                    nuevoComando.appendChild(titulo);
+                    nuevoComando.appendChild(functions);
+                    content[0].appendChild(nuevoComando);
+
+                    let funciones = comando.getElementsByTagName('funcion')
+                    
+                    for (j = 0; j < funciones.length; j++) {
+
+                        var funj = 'fun' + j;
+                        
+                        let funcion = funciones[j];
+
+                        let test = funcion.getAttribute('nombre');
+        
+
+                        if (test == "param") {
+                            let funct = document.createElement('p');
+                            let funct2 = document.createElement('p');
+                            funct.setAttribute('id', funj);
+                            funct.setAttribute('style', "color: lime; margin-bottom: 5px;");
+                            funct.innerHTML += funcion.textContent;
+                            functions.appendChild(funct);
+                            functions.appendChild(funct2);
+                        } 
+                        
+                        if (test == "flag") {
+                            let funct = document.createElement('form');
+                            funct.setAttribute('style', 'width: 100%;display:flex; wrap: wrap;');
+                            funct.setAttribute('action', '/challenges/usuarios');
+                            funct.setAttribute('method', 'POST');
+                        /* funct.setAttribute('class', 'form-inline');*/
+
+                        /* let funct2 = document.createElement('div');
+                            funct2.setAttribute('style', 'width:100%;display:flex;');*/
+
+                            let funct3 = document.createElement('label');
+                            funct3.setAttribute('for', 'inputPassword2');
+                            funct3.setAttribute('class', 'sr-only');
+
+                            let funct5 = document.createElement('input');
+                            funct5.setAttribute('type', 'text');
+                            funct5.setAttribute('style', 'display:none;');
+                            code = funcion.getAttribute('code');
+                            funct5.setAttribute('name', 'num');
+                            funct5.setAttribute('value', code);
+                            funct5.setAttribute('placeholder', code);
+
+                            let funct1 = document.createElement('input');
+                            funct1.setAttribute('type', 'text');
+                            funct1.setAttribute('name', 'flag');
+                            funct1.setAttribute('placeholder', 'Flag');
+                            funct1.setAttribute('class', 'form-control');
+                            funct1.setAttribute('style', 'width: 40%; height: 38px;');
+
+                            let funct4 = document.createElement('button');
+                            funct4.setAttribute('style', 'width: 15%;margin-left: 50px;');
+                            funct4.setAttribute('type', 'submit');
+                            funct4.setAttribute('onclick', 'send()');
+                            funct4.setAttribute('id', 'boton1');
+                            funct4.setAttribute('class', 'btn btn-info');
+                            funct4.innerHTML += "enviar";
+
+                            funct.appendChild(funct3)
+                            funct.appendChild(funct5)
+                            funct.appendChild(funct1)
+                            funct.appendChild(funct4)
+
+
+                            var own_flag = own_flags.replace('(', '')
+                            var own_flag = own_flag.replace(')', '')
+                            var own_flag = own_flag.replace('[', '')
+                            var own_flag = own_flag.replace(']', '')
+                            var own_flag = own_flag.replace('', '')
+                            var own_flag = own_flag.replace(/\'/g, '')
+                            var own_flag = own_flag.replace(/\s/g, '')
+                            var own_flag = own_flag.split(",");
+
+                            var solu = sol.replace('(', '')
+                            var solu = solu.replace('(', '')
+                            var solu = solu.replace(')', '')
+                            var solu = solu.replace('[', '')
+                            var solu = solu.replace(']', '')
+                            var solu = solu.replace('', '')
+                            var solu = solu.replace(/\'/g, '')
+                            var solu = solu.replace(/\s/g, '')
+                            var solu = solu.split(",");
+                            
+                            console.log("test")
+                            console.log(own_flag)
+                            console.log(own_flag[0])
+                            console.log(own_flag[1])
+                            console.log(own_flag[2])
+                            console.log(own_flag[3])
+                            console.log(own_flag[4])
+                            console.log(j)
+                            console.log(i)
+                            console.log("test")
+
+                            if (own_flag[i] != zero) {
+                                console.log("Lab J:")
+                                console.log(j)
+                                console.log("RESUELTO")
+                                console.log("ONE")
+                                console.log(one)
+                                console.log("OWN FLAG")
+                                console.log(own_flag[j])
+
+                                let funct6 = document.createElement('div');
+                                funct6.setAttribute('style', 'width: 20%; padding-top: 6px;height: 38px;background-color: #0bd88d;text-align: center; margin: auto; border-radius:5px;')
+                                let funct7 = document.createElement('a');
+                                funct7.innerHTML += "Lab resuelto";
+                                funct7.setAttribute('style','vertical-align: middle;')
+                                funct6.appendChild(funct7);
+                                
+
+                                //FLAG PARA EL SIGUIENTE LAB 
+                                //if (own_flag.length):
+                                let funct10 = document.createElement('p');
+                                let funct8 = document.createElement('div');
+                                funct8.setAttribute('style', 'margin-top: 100px;width: fit-content; padding-inline: 20px; padding-top: 6px;height: 38px;background-color: #0bd88d;text-align: center; margin: auto; border-radius:5px;')
+                                let funct9 = document.createElement('a');
+                                let funct11 = document.createElement('strong');
+                                
+                                funct9.innerHTML += "Password para ";
+
+                                let next = (i + 2)
+                                console.log("BBBBBBB")
+                                console.log(i)
+                                console.log(comandos.length)
+
+                            
+                                funct11.innerHTML += ("Mini "+ next +": ");
+                                funct9.setAttribute('style','vertical-align: middle;')
+                                funct9.appendChild(funct11);
+                                funct9.innerHTML += solu[i];
+                                funct8.appendChild(funct9);
+                                
+
+                                funct.appendChild(funct6);
+                                functions.appendChild(funct);
+                                functions.appendChild(funct10);
+                                functions.appendChild(funct8);
+    
+                            
+                            } else  {
+                                console.log("Lab J:")
+                                console.log(j)
+                                console.log("RESUELTO")
+                                console.log("ZERO")
+                                console.log(zero)
+                                console.log("OWN FLAG")
+                                console.log(own_flag[j])
+
+                                let funct6 = document.createElement('div');
+                                funct6.setAttribute('style', 'width: 20%;padding-top: 6px;height: 38px;background-color: orange; text-align: center;margin: auto; border-radius:5px;')
+                                let funct7 = document.createElement('a');
+                                funct7.innerHTML += "Lab sin resolver";
+                                funct7.setAttribute('style','vertical-align: middle;')
+                                funct6.appendChild(funct7);
+                                
+                                funct.appendChild(funct6);
+                                functions.appendChild(funct);
+                                functions.appendChild(funct8);
+                                
+                            } 
+
+                            
+
+                            
+                        } 
+                        else if (test == "img") {
+                            let funct = document.createElement('img');
+                            funct.setAttribute('id', funj);
+                            src = funcion.textContent;
+                            width = funcion.getAttribute('width')
+                            height = funcion.getAttribute('height')
+
+                            funct.setAttribute('src', src);
+                            funct.setAttribute('style', "border-radius:5px;  display: block; margin-left: auto; margin-right: auto;");
+                            funct.style.width = width;
+                            funct.style.height = height;
+                            functions.appendChild(funct);
+                        } 
+                        else if (test == "jump") {
+                            let funct = document.createElement('div');
+                            funct.setAttribute('id', funj);
+                            height = funcion.getAttribute('height')
+                            funct.style.height = height;
+                            functions.appendChild(funct);
+                        }
+                        else if (test == "line") {
+                            let funct = document.createElement('hr');
+                            funct.setAttribute('id', funj);
+                            functions.appendChild(funct);
+                        }
+                        else if (test == "boton") {
+                            let funct = document.createElement('button');
+                            funct.setAttribute('id', funj);
+                            funct.setAttribute('class', "btn btn-warning");
+                            funct.setAttribute('style', "margin-left: 45%;");
+                            funct.innerHTML += funcion.textContent;
+                            functions.appendChild(funct);
+                        }
+                        else if (test == "table") {
+
+                            let table = document.createElement('table');
+                            table.setAttribute('style', "color: white;");
+                            let rows = funcion.getElementsByTagName('tr');
+
+                            for (r = 0; r < rows.length; r++) {
+                                row = rows[r]
+                                
+                                let fila = document.createElement('tr');
+                                let cols = row.getElementsByTagName('td');
+                                console.log(cols)
+                                for (c = 0; c < cols.length; c++) {
+                                    col = cols[c]
+                                    let columna = document.createElement('td');
+                                    columna.setAttribute('style', "text-align:center;");
+                                    columna.innerHTML += col.textContent
+                                    fila.appendChild(columna)
+                                }
+                                table.appendChild(fila);
+                                functions.appendChild(table);
+
+                            }
+                        } 
+                        else if(test == "pronto"){
+                            let funct = document.createElement('p');
+                            funct.setAttribute('id', funj);
+                            funct.setAttribute('style', "color: yellow; margin-bottom: 5px; text-align:center;");
+                            funct.innerHTML += funcion.textContent;
+                            functions.appendChild(funct);
+
+                        }
+                        else if (test == "text") {
+                            
+                            let funct = document.createElement('p');
+                            funct.setAttribute('id', funj);
+                            funct.setAttribute('style', "color: white; margin-bottom: 5px;");
+                            funct.innerHTML += funcion.textContent;
+                            functions.appendChild(funct);
+
+                        }
+
+                    };
+
+                };
+                
+            };}
+
+    
+
+    //window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
+
+
+    </script>
+
+
+
+
+    </div>
+    <div class="socials" style="padding-bottom: 5%;">
+        <footer>
+            <button class="redes" id="github" onclick="window.open('https://github.com/KermitPurple96/minihack','_blank')">
+                <i class="bi bi-github" style="font-size: larger;"></i>
+            </button>
+            <button class="redes" id="hackthebox">
+                <i class="bi bi-box" style="font-size: larger;"></i>
+            </button>
+            <button class="redes" id="youtube">
+                <i class="bi bi-youtube" style="font-size: larger;"></i>
+            </button>
+            <button class="redes" id="instagram">
+                <i class="bi bi-instagram" style="font-size: larger;"></i>
+            </button>
+            <button class="redes" id="twitter">
+                <i class="bi bi-twitter" style="font-size: larger;"></i>
+            </button>
+
+        </footer>
+    </div>
+
+{% else %}
+
+</div>
+<div class="socials" style="padding-bottom: 5%;">
+    <footer>
+        <button class="redes" id="github">
+            <i class="bi bi-github" style="font-size: larger;"></i>
+        </button>
+        <button class="redes" id="hackthebox">
+            <i class="bi bi-box" style="font-size: larger;"></i>
+        </button>
+        <button class="redes" id="youtube">
+            <i class="bi bi-youtube" style="font-size: larger;"></i>
+        </button>
+        <button class="redes" id="instagram">
+            <i class="bi bi-instagram" style="font-size: larger;"></i>
+        </button>
+        <button class="redes" id="twitter">
+            <i class="bi bi-twitter" style="font-size: larger;"></i>
+        </button>
+
+    </footer>
+</div>
+
+{% endif %}
+{% endblock %}
