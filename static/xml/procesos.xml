@@ -1,0 +1,52 @@
+    <comandos>
+        <comando nombre="nginx">
+            <funcion>Nginx es un servidor web ligero de alto rendimiento y un proxy inverso de código abierto. Está diseñado para manejar eficientemente solicitudes web estáticas y dinámicas. NGINX se destaca por su capacidad para manejar un alto número de conexiones simultáneas con un consumo de recursos reducido.</funcion>
+            <funcion>Nginx es un servidor web de alto rendimiento y un proxy inverso que ofrece una solución eficiente y escalable para la entrega de contenido web. Su popularidad se debe a su capacidad para manejar cargas de trabajo intensivas y su flexibilidad en la configuración y funcionalidad.</funcion>
+            <funcion nombre="img">/static/content/ng.png</funcion>
+
+        </comando>
+        <comando nombre="ssh">
+            <funcion>SSH es un protocolo que permite iniciar sesión de forma remota en un sistema y ejecutar comandos de forma segura.</funcion>
+            <funcion nombre="param">ssh usuario@host</funcion>
+            <funcion nombre="jump" height="5px"></funcion>
+            <funcion nombre="img">/static/content/ssh.png</funcion>
+            <funcion nombre="jump" height="5px"></funcion>
+            <funcion nombre="line"></funcion>
+            <funcion nombre="param">-p</funcion>
+            <funcion>Especifica el puerto al que se conectará el cliente SSH.</funcion>
+            <funcion nombre="param">-i</funcion>
+            <funcion>Especifica la ubicación del archivo de clave privada a utilizar en la autenticación SSH.</funcion>
+            <funcion nombre="param">-L</funcion>
+            <funcion>Especifica un reenvío de puerto local durante la conexión SSH.</funcion>
+        </comando>
+        <comando nombre="ftp">
+            <funcion>FTP es un protocolo utilizado para transferir archivos entre un cliente y un servidor a través de una red.</funcion>
+            <funcion nombre="param">ftp ftp.example.com</funcion>
+            <funcion nombre="jump" height="5px"></funcion>
+            <funcion nombre="img">/static/content/ftp.jpg</funcion>
+            <funcion nombre="jump" height="5px"></funcion>
+            <funcion nombre="line"></funcion>
+            <funcion nombre="param">-p</funcion>
+            <funcion>Activa el modo pasivo en la conexión FTP.</funcion>
+            <funcion nombre="param">-u</funcion>
+            <funcion>Especifica el nombre de usuario a utilizar en la conexión FTP.</funcion>
+            <funcion nombre="param">-P</funcion>
+            <funcion>Especifica el puerto al que se conectará el cliente FTP.</funcion>
+        </comando>
+        <comando nombre="mysql">
+            <funcion>MySQL es un sistema de gestión de bases de datos relacional.</funcion>
+            <funcion nombre="param">mysql -u root -p</funcion>
+            <funcion nombre="jump" height="5px"></funcion>
+            <funcion nombre="img">/static/content/sql.png</funcion>
+            <funcion nombre="jump" height="5px"></funcion>
+            <funcion nombre="line"></funcion>
+            <funcion nombre="param">-u</funcion>
+            <funcion>Inicia sesión en MySQL como usuario "root".</funcion>
+            <funcion nombre="param">-p</funcion>
+            <funcion>Solicita la contraseña durante el proceso de autenticación.</funcion>
+            <funcion nombre="param">-P</funcion>
+            <funcion>Indica el puerto al cual conectarse.</funcion>
+            <funcion nombre="param">-h</funcion>
+            <funcion>Especifica el host al que se conectará el cliente MySQL (en este caso, el localhost).</funcion>
+        </comando>
+    </comandos>

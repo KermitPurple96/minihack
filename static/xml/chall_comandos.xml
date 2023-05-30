@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<comandos>
+    <comando nombre="Mini 1" ref="1">
+        <funcion>La flag para el siguiente laboratorio se encuentra en un archivo oculto</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="flag" code="1"></funcion>
+    </comando>
+    <comando nombre="Mini 2" ref="2">
+        <funcion>La flag para el siguiente laboratorio se encuentra en el directorio home de mini2</funcion>
+        <funcion nombre="flag" code="2"></funcion>
+    </comando>
+    <comando nombre="Mini 3" ref="3">
+        <funcion>La flag para el siguiente laboratorio se encuentra en un formato distinto</funcion>
+        <funcion nombre="flag" code="3"></funcion>
+    </comando>
+    <comando nombre="Mini 4" ref="4">
+        <funcion>La flag para el siguiente laboratorio se encuentra en un formato distinto</funcion>
+        <funcion nombre="flag" code="4"></funcion>
+    </comando>
+    <comando nombre="" ref="6">
+        <funcion>Pronto más challenges!!</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="pronto" code="6"></funcion>
+    </comando>
+</comandos>

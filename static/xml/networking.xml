@@ -1,0 +1,82 @@
+<comandos>
+    <comando nombre="nc">
+        <funcion>Netcat (nc) es una herramienta versátil que permite establecer conexiones de red y transferir datos a través de sockets.</funcion>
+        <funcion nombre="param">nc -lvp 8080</funcion>
+        <funcion nombre="img">/static/content/nc.png</funcion>
+        <funcion nombre="line"></funcion>
+        <funcion nombre="param">-l</funcion>
+        <funcion>Especifica el puerto en el que `nc` escucha o se conecta.</funcion>
+        <funcion nombre="param">-v</funcion>
+        <funcion>Ejecuta `nc` en modo verbose, proporcionando una salida más detallada.</funcion>
+        <funcion nombre="param">-n</funcion>
+        <funcion>Desactiva la resolución de nombres, evitando la resolución inversa de direcciones IP a nombres de host.</funcion>
+        <funcion nombre="param">-u</funcion>
+        <funcion>Utiliza el protocolo UDP en lugar de TCP para establecer la conexión.</funcion>
+        <funcion nombre="param">-e</funcion>
+        <funcion>Especifica un programa o comando para ejecutar una vez que se establece la conexión.</funcion>
+        <funcion nombre="param">-w</funcion>
+        <funcion>Establece un tiempo de espera en segundos para las operaciones de lectura y escritura.</funcion>
+        <funcion nombre="param">-z</funcion>
+        <funcion>Escanea un rango de puertos para verificar su estado.</funcion>
+        <funcion nombre="param">-s</funcion>
+        <funcion>Especifica la dirección IP o nombre de host fuente utilizada en la conexión.</funcion>
+    </comando>
+
+    <comando nombre="ping">
+        <funcion>Ping es un comando utilizado para verificar la conectividad de red enviando paquetes ICMP Echo Request a una dirección de red.</funcion>
+        <funcion nombre="param">ping google.com</funcion>
+        <funcion nombre="img">/static/content/ping.png</funcion>
+        <funcion nombre="line"></funcion>
+        <funcion nombre="param">-c</funcion>
+        <funcion>Especifica el número de paquetes que se enviarán en el comando ping.</funcion>
+        <funcion nombre="param">-s</funcion>
+        <funcion>Especifica el tamaño del paquete en bytes que se enviará en el comando ping.</funcion>
+        <funcion nombre="param">-t</funcion>
+        <funcion>Especifica el tiempo de vida (TTL) de los paquetes en el comando ping.</funcion>
+        <funcion nombre="line"></funcion>
+        <funcion>Podemos hacer un rápido script en bash que nos descubra hosts activos en una red local.</funcion>
+        <funcion nombre="param">hosts_discovery.sh</funcion>
+        <funcion nombre="jump" height="10px"></funcion>
+        <funcion nombre="img">/static/content/hostdis.png</funcion>
+    </comando>
+
+    <comando nombre="ifconfig">
+        <funcion>Ifconfig es un comando utilizado para configurar y mostrar información sobre las interfaces de red en un sistema.</funcion>
+        <funcion nombre="img">/static/content/ifconfig.png</funcion>
+        <funcion nombre="line"></funcion>
+        <funcion>ifconfig eth0</funcion>
+        <funcion nombre="param">-a</funcion>
+        <funcion>Muestra todas las interfaces de red, incluyendo las interfaces inactivas.</funcion>
+        <funcion nombre="param">-s</funcion>
+        <funcion>Muestra un resumen de las estadísticas de las interfaces de red.</funcion>
+    </comando>
+
+    <comando nombre="curl">
+        <funcion>Curl es una herramienta de línea de comandos utilizada para transferir datos a través de URL.</funcion>
+        <funcion nombre="img">/static/content/curl.png</funcion>
+        <funcion nombre="line"></funcion>
+        <funcion nombre="param">curl -X GET https://www.example.com</funcion>
+        <funcion nombre="param">-X</funcion>
+        <funcion>Especifica el método HTTP a utilizar en la solicitud.</funcion>
+        <funcion nombre="param">-H</funcion>
+        <funcion>Especifica encabezados adicionales en la solicitud HTTP.</funcion>
+        <funcion nombre="param">-d</funcion>
+        <funcion>Especifica los datos a enviar en la solicitud HTTP como cuerpo del mensaje.</funcion>
+    </comando>
+    <comando nombre="echo">
+        <funcion>Echo no solo se puede usar para mostrar output por pantalla, también se puede usar para descubrimiento de puertos en una red.</funcion>
+        <funcion>Podemos descubrir puertos TCP abiertos de un host mandando una cadena vacía a la rutas</funcion>
+        <funcion nombre="param">/dev/tcp/ip/puerto</funcion>
+        <funcion>Y por UDP.</funcion>
+        <funcion nombre="param">/dev/udp/ip/puerto</funcion>
+        
+        <funcion nombre="line"></funcion>
+        <funcion nombre="param">port_discovery.sh</funcion>
+        <funcion nombre="jump" height="10px"></funcion>
+        <funcion nombre="img">/static/content/portdis.png</funcion>
+       
+    </comando>
+
+
+
+</comandos>

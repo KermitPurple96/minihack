@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<comandos>
+    <comando nombre="Mini 1" ref="1">
+        <funcion nombre="text">Para conseguir la flag tendrás que convertirte antes en mini2</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="flag" code="1"></funcion>
+    </comando>
+    <comando nombre="Mini 2" ref="2">
+        <funcion nombre="text">La siguiente flag es un grupo al que pertenece mini2</funcion>
+        <funcion nombre="flag" code="2"></funcion>
+    </comando>
+    <comando nombre="Mini 3" ref="3">
+        <funcion nombre="text">En este Lab la flag es 4 digitos los cuales son los permisos en octal de challenge_3.txt, ej:</funcion>
+        <funcion nombre="param">rwxr-xr-x  ->  0755</funcion>
+        <funcion nombre="flag" code="3"></funcion>
+    </comando>
+    <comando nombre="" ref="6">
+        <funcion nombre="text">Pronto más challenges!!</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="pronto" code="6"></funcion>
+    </comando>
+
+    
+</comandos>
