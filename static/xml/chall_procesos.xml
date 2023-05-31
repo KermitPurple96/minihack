@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<comandos>
+    <comando nombre="mini1" ref="1">
+        <funcion nombre="text">En qué puerto está corriendo el servicio web de nginx?</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="flag" code="1"></funcion>
+    </comando>
+    <comando nombre="mini2" ref="2">
+        <funcion nombre="text">Para conseguir la flag en lugar de conectarte por SSH conéctate por MySQL en el puerto 3307 usando las mismas credenciales que usarías para mini2</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="flag" code="2"></funcion>
+    </comando>
+    <comando nombre="mini3" ref="3">
+        <funcion nombre="text">Para conseguir la flag en lugar de conectarte por SSH conéctate por FTP en el puerto 21 usando las mismas credenciales que usarías para mini3</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="flag" code="3"></funcion>
+    </comando>
+    <comando nombre="" ref="4">
+        <funcion nombre="text">Pronto más challenges!!</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="pronto" code="4"></funcion>
+    </comando>
+</comandos>

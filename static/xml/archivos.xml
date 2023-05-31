@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<comandos>
+    <comando nombre="/bin">
+        <funcion>Almacena todos los binarios necesarios para garantizar las funciones básicas a nivel de usuario. Solo almacena ejecutables de usuario, los binarios para tareas administrativas o de superusuario se encuentran en sbin.</funcion>
+        <funcion nombre="line"></funcion> 
+        <funcion nombre="param">/bin/bash</funcion>
+        <funcion>El archivo /bin/bash es el intérprete de comandos por defecto en la mayoría de las distribuciones de Linux. Es el shell de comandos utilizado para ejecutar comandos y scripts en el sistema.</funcion>
+
+        <funcion nombre="param">/bin/ls</funcion>
+        <funcion>El archivo /bin/ls es el comando utilizado para listar el contenido de un directorio. Al ejecutar "/bin/ls" en la línea de comandos, muestra los archivos y directorios presentes en la ubicación especificada.</funcion>       
+        <funcion nombre="param">/bin/grep</funcion>
+        <funcion>El archivo /bin/grep es un comando utilizado para buscar patrones específicos dentro de archivos de texto. Es ampliamente utilizado para filtrar y encontrar líneas que coinciden con un patrón dado en archivos de texto o salida de otros comandos.</funcion>
+
+        <funcion nombre="param">/bin/cp</funcion>
+        <funcion>El archivo /bin/cp es el comando utilizado para copiar archivos y directorios en Linux. Permite crear copias exactas de archivos o directorios, tanto dentro del mismo sistema de archivos como entre sistemas de archivos diferentes.</funcion>
+    </comando>
+    <comando nombre="/boot">
+        <funcion>Directorio con los ejecutables archivos para el arranque del sistema y que se usan antes de que el kernel empiece a dar las ordenes.</funcion>
+        <funcion nombre="line"></funcion>
+        <funcion nombre="param">/boot/grub</funcion>
+        <funcion>El directorio "/boot/grub" contiene los archivos relacionados con el cargador de arranque GRUB (Grand Unified Bootloader). Aquí se encuentran los archivos de configuración del GRUB, como `grub.cfg`, que define las opciones de arranque del sistema y las entradas del menú. También se pueden encontrar otros archivos utilizados por el GRUB, como los archivos de tema y los módulos necesarios para el arranque del sistema.</funcion>
+
+    </comando>
+    <comando nombre="/sbin">
+        <funcion>El directorio /sbin se trata de un directorio estático y compartible. Es como bin pero para binarios de tareas propias del sistema operativo y que solo pueden ser gestionadas por root, tareas de arranque etc,</funcion> 
+        <funcion nombre="line"></funcion>
+        <funcion nombre="param">/sbin/init</funcion>
+        <funcion>El programa de inicio del sistema. Es el primer proceso que se ejecuta durante el arranque del sistema y es responsable de iniciar todos los demás procesos y servicios del sistema.</funcion>
+
+        <funcion nombre="param">/sbin/shutdown</funcion>
+        <funcion>Comando utilizado para apagar o reiniciar el sistema de manera controlada. Permite realizar un cierre adecuado del sistema y notificar a los usuarios sobre el proceso de apagado o reinicio.</funcion>
+
+        <funcion nombre="param">/sbin/ifconfig</funcion>
+        <funcion>Herramienta utilizada para configurar y mostrar información sobre las interfaces de red del sistema. Permite ver y modificar la configuración de red, como direcciones IP, máscaras de red y configuración de enrutamiento.</funcion>
+
+        <funcion nombre="param">/sbin/route</funcion>
+        <funcion>Comando utilizado para mostrar y manipular la tabla de enrutamiento del sistema. Permite configurar rutas estáticas, visualizar la tabla de enrutamiento actual y administrar las rutas de red.</funcion>
+
+        <funcion nombre="param">/sbin/dhclient</funcion>
+        <funcion>Cliente DHCP utilizado para obtener de forma dinámica una configuración de red (como dirección IP, máscara de red, puerta de enlace, etc.) de un servidor DHCP en la red. Es especialmente útil en entornos de redes con cambios frecuentes de configuración.</funcion>
+
+        <funcion nombre="param">/sbin/sysctl</funcion>
+        <funcion>Herramienta utilizada para modificar y visualizar los parámetros del kernel en tiempo de ejecución. Permite ajustar la configuración del sistema, como límites de memoria, parámetros de red y ajustes de rendimiento.</funcion>
+
+        <funcion nombre="param">/sbin/fsck</funcion>
+        <funcion>Comando utilizado para realizar comprobaciones y reparaciones en el sistema de archivos. Verifica y corrige errores en los sistemas de archivos durante el arranque o de forma manual para mantener la integridad del sistema de archivos.</funcion>
+    </comando>
+    <comando nombre="/lib">
+        <funcion>El directorio /lib es un directorio estático y que puede ser compartible. Este directorio contiene bibliotecas compartidas que son necesarias para arrancar los ejecutables que se almacenan en los directorios /bin y /sbin.</funcion> 
+        <funcion nombre="line"></funcion>
+
+        <funcion nombre="param">/lib/libc.so.6</funcion>
+        <funcion>El archivo /lib/libc.so.6 es una biblioteca de enlace dinámico utilizada por la mayoría de los programas en Linux. Proporciona las funciones básicas del lenguaje C y es esencial para el funcionamiento de numerosas aplicaciones en el sistema.</funcion>
+
+        <funcion nombre="param">/lib/modules/5.10.0-1234-generic</funcion>
+        <funcion>El directorio /lib/modules/5.10.0-1234-generic contiene los módulos del kernel para una versión específica del kernel Linux. Estos módulos contienen controladores de dispositivos y otras extensiones del kernel necesarias para admitir el hardware y las características del sistema.</funcion>
+        <funcion nombre="param">/lib/libssl.so.1.1</funcion>
+        <funcion>El archivo /lib/libssl.so.1.1 es una biblioteca de enlace dinámico utilizada por aplicaciones que requieren soporte para el protocolo SSL/TLS. Proporciona funciones criptográficas y de seguridad utilizadas para la comunicación segura en redes.</funcion>
+
+        <funcion nombre="param">/lib/firmware</funcion>
+        <funcion>El directorio /lib/firmware contiene archivos de firmware utilizados por dispositivos de hardware en el sistema. Estos archivos contienen instrucciones de bajo nivel necesarias para el funcionamiento y control de ciertos componentes de hardware, como tarjetas de red inalámbricas o adaptadores de red.</funcion>
+    
+    </comando>
+    <comando nombre="/dev">
+        <funcion>Incluye todos los dispositivos de almacenamiento en forma de archivos conectados al sistema, partición de disco, disco  duro, USB que el sistema pueda valorar como unidad logica de almacenamiento.</funcion>
+        <funcion nombre="line"></funcion>
+        <funcion nombre="param">/dev/null</funcion>
+        <funcion>Un dispositivo especial que acepta y descarta todos los datos que se escriben en él. Es útil para descartar la salida no deseada o redirigir datos que no se necesitan.</funcion>
+
+        <funcion nombre="param">/dev/zero</funcion>
+        <funcion>Un dispositivo especial que genera datos nulos. Al leer desde este dispositivo, siempre se obtendrá una secuencia de ceros.</funcion>
+
+        <funcion nombre="param">/dev/random</funcion>
+        <funcion>Un dispositivo especial que genera datos aleatorios basados en eventos impredecibles del sistema. Se utiliza para generar números aleatorios criptográficamente seguros.</funcion>
+
+        <funcion nombre="param">/dev/urandom</funcion>
+        <funcion>Un dispositivo especial similar a `/dev/random`, pero no bloquea la lectura cuando no hay suficiente entropía disponible. Se utiliza cuando se requieren datos aleatorios de forma no crítica.</funcion>
+
+        <funcion nombre="param">/dev/tty</funcion>
+        <funcion>Un dispositivo especial que representa la terminal actual. Se utiliza para interactuar con la entrada y salida estándar del terminal.</funcion>
+
+        <funcion nombre="param">/dev/sda</funcion>
+        <funcion>El primer disco duro SATA/SCSI detectado en el sistema. Los discos duros adicionales suelen seguir una secuencia numérica (sdb, sdc, etc.).</funcion>
+
+        <funcion nombre="param">/dev/cdrom</funcion>
+        <funcion>Un enlace simbólico al dispositivo de CD-ROM/DVD-ROM del sistema. Se utiliza para acceder a la unidad de CD/DVD para lectura.</funcion>
+
+    </comando>
+    <comando nombre="/etc">
+        <funcion>Almacena los archivos de configuración del sistema como de los componentes o de aplicaciones instaladas a posteriori. No debe almacenar binarios.</funcion> 
+        <funcion nombre="line"></funcion>
+        <funcion nombre="param">/etc/init.d</funcion>
+        <funcion>El directorio "/etc/init.d" es utilizado por el sistema de inicio SysV para almacenar los scripts de inicio y parada de los servicios del sistema. Estos scripts son ejecutados durante el proceso de inicio y apagado del sistema para iniciar y detener los servicios correspondientes.</funcion>
+        <funcion nombre="param">/etc/apt</funcion>
+        <funcion>El directorio "/etc/apt" contiene los archivos de configuración y los scripts utilizados por el sistema de gestión de paquetes APT (Advanced Package Tool). Aquí se encuentran los archivos de configuración de los repositorios de software, así como otros archivos relacionados con la administración de paquetes en el sistema.</funcion>
+        <funcion nombre="param">/etc/shadow</funcion>
+        <funcion>El directorio "/etc/shadow" contiene el archivo de contraseñas encriptadas del sistema. Este archivo almacena las contraseñas en forma de hash para los usuarios del sistema. Solo el superusuario tiene permisos de lectura para este archivo, lo que garantiza la seguridad de las contraseñas almacenadas.</funcion>
+        <funcion nombre="param">/etc/hosts</funcion>
+        <funcion>El directorio "/etc/hosts" contiene el archivo de configuración de hosts. Este archivo se utiliza para asociar nombres de host con direcciones IP en el sistema. Es una parte importante de la resolución de nombres en el sistema operativo y se utiliza para mapear nombres de dominio a direcciones IP locales.</funcion>
+        <funcion nombre="param">/etc/passwd</funcion>
+        <funcion>El directorio "/etc/passwd" contiene el archivo de contraseñas y la información de los usuarios del sistema. Este archivo almacena los detalles de los usuarios, como nombres de usuario, identificadores de usuario (UID), identificadores de grupo (GID), directorios de inicio y shell predeterminada. Sin embargo, las contraseñas en sí no se almacenan en este archivo, sino que se almacenan en "/etc/shadow".</funcion>
+    </comando>
+
+    <comando nombre="/usr">
+        <funcion>El directorio /usr es un directorio compartido y estático. Este directorio es el que contiene la gran mayoría de programas instalados en nuestro sistema operativo.
+Todo el contenido almacenado en la carpeta /usr es accesible para todos los usuarios y su contenido es solo de lectura.</funcion>
+        <funcion nombre="line"></funcion>
+        <funcion nombre="param">/usr/bin</funcion>
+        <funcion>Directorio que contiene los archivos ejecutables para los usuarios del sistema. Aquí se encuentran los programas y comandos principales.</funcion>
+
+        <funcion nombre="param">/usr/sbin</funcion>
+        <funcion>Directorio que contiene los archivos ejecutables para los administradores del sistema. Aquí se encuentran los programas y comandos de administración del sistema.</funcion>
+
+        <funcion nombre="param">/usr/lib</funcion>
+        <funcion>Directorio que contiene las bibliotecas compartidas y los archivos necesarios para ejecutar programas en `/usr/bin` y `/usr/sbin`.</funcion>
+
+        <funcion nombre="param">/usr/include</funcion>
+        <funcion>Directorio que contiene los archivos de inclusión (headers) necesarios para el desarrollo de software. Aquí se encuentran los archivos de encabezado para las bibliotecas y las funciones del sistema.</funcion>
+
+        <funcion nombre="param">/usr/share</funcion>
+        <funcion>Directorio que contiene archivos de datos compartidos utilizados por varias aplicaciones y paquetes. Aquí se encuentran los datos no ejecutables, como imágenes, archivos de configuración y documentación.</funcion>
+
+        <funcion nombre="param">/usr/local</funcion>
+        <funcion>Directorio que contiene programas, bibliotecas y archivos relacionados específicos de este sistema local. Aquí se instalan los programas y paquetes personalizados que no son parte de la distribución principal.</funcion>
+
+        <funcion nombre="param">/usr/share/doc</funcion>
+        <funcion>Directorio que contiene la documentación de los paquetes instalados en el sistema. Aquí se encuentran los archivos de documentación en formato de texto, HTML u otros formatos para los programas instalados.</funcion>
+
+        <funcion nombre="param">/usr/share/man</funcion>
+        <funcion>Directorio que contiene las páginas de manual del sistema. Aquí se encuentran las páginas de manual para los comandos y programas instalados en el sistema.</funcion>
+    </comando>
+
+    <comando nombre="/var">
+        <funcion>El directorio /var contiene archivos de datos variables y temporales como por ejemplo los registros del sistema (logs), los registros de programas que tenemos instalados en el sistema operativo, archivos spool, etc.</funcion>
+        <funcion nombre="line"></funcion>
+        <funcion nombre="param">/var/log</funcion>
+        <funcion>Registra archivos de registro del sistema y de las aplicaciones.</funcion>
+
+        <funcion nombre="param">/var/mail</funcion>
+        <funcion>El directorio /var/mail es utilizado por el sistema para almacenar los correos electrónicos de los usuarios en un servidor de correo local. Cada usuario que tenga configurado un buzón de correo en el sistema tendrá un archivo correspondiente en este directorio que almacena sus mensajes de correo electrónico. Los servidores de correo y los programas de correo utilizan el directorio /var/mail para acceder y gestionar los mensajes de correo electrónico de los usuarios.</funcion>
+
+        <funcion nombre="param">/var/lib</funcion>
+        <funcion>Contiene archivos y datos variables utilizados por aplicaciones en ejecución.</funcion>
+
+        <funcion nombre="param">/var/spool</funcion>
+        <funcion>Almacena archivos temporales y colas de trabajos para impresión, correo y otros servicios.</funcion>
+
+        <funcion nombre="param">/var/cache</funcion>
+        <funcion>Guarda datos en caché para aplicaciones que pueden ser regenerados o descargados nuevamente.</funcion>
+
+        <funcion nombre="param">/var/www</funcion>
+        <funcion>Directorio raíz para archivos y páginas web servidos por un servidor HTTP.</funcion>
+
+        <funcion nombre="param">/var/lock</funcion>
+        <funcion>Contiene archivos de bloqueo que evitan que múltiples procesos accedan a recursos simultáneamente.</funcion>
+
+        <funcion nombre="param">/var/tmp</funcion>
+        <funcion>Directorio temporal para almacenar archivos que deben persistir a través de reinicios del sistema.</funcion>
+
+        <funcion nombre="param">/var/run</funcion>
+        <funcion>Almacena archivos de estado y sockets de comunicación para procesos en ejecución.</funcion>
+    </comando>
+
+    <comando nombre="/root">
+        <funcion>El directorio /root es el directorio de inicio del usuario root, también conocido como superusuario. Es el directorio principal y privado del usuario root, que tiene acceso y control completo sobre el sistema.</funcion>
+    </comando>
+
+    <comando nombre="/home">
+        <funcion>El directorio /home contiene los directorios personales de los usuarios normales del sistema. Cada usuario tiene su propio subdirectorio dentro de /home, donde pueden almacenar sus archivos personales y configuraciones.</funcion>
+    </comando>
+
+    <comando nombre="/mnt">
+        <funcion>El directorio /mnt se utiliza para montar temporalmente sistemas de archivos adicionales, como dispositivos USB, particiones de disco u otros sistemas de archivos remotos. Se puede utilizar como punto de montaje temporal para acceder a los archivos de estos sistemas.</funcion>
+    </comando>
+
+    <comando nombre="/tmp">
+        <funcion>El directorio /tmp es un directorio temporal donde los programas y los usuarios pueden almacenar archivos temporales. Estos archivos suelen ser eliminados automáticamente después de un reinicio del sistema o después de un cierto período de tiempo. Es comúnmente utilizado para almacenar datos temporales requeridos por aplicaciones y procesos en ejecución.</funcion>
+    </comando>
+</comandos>

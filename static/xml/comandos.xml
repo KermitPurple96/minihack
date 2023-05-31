@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<comandos>
+    <comando nombre="ls">
+        <funcion>El comando ls en sistemas operativos basados en Linux es un comando de línea de comandos que muestra una lista de archivos y directorios en un directorio especificado. Si se ejecuta ls sin ningún argumento adicional, mostrará la lista de archivos y directorios en el directorio actual.</funcion>
+        <funcion nombre="param">-a, --all</funcion>
+        <funcion>Muestra archivos ocultos, aquellos que comienza su nombre por un ".". Ej: .archivo_secreto</funcion>
+        <funcion nombre="jump" height="10px"></funcion>        
+        <funcion nombre="img">/static/content/lsa.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion>  
+        <funcion nombre="param">-l, (long)</funcion>
+        <funcion>Muestra los permisos de los archivos del directorio en el que nos encontramos</funcion>
+        <funcion nombre="jump" height="10px"></funcion>        
+        <funcion nombre="img">/static/content/lsl.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion>  
+    </comando>
+    <comando nombre="cd">
+        <funcion>Para movernos a un directorio simplemente ejecutamos cd y el directorio al cual nos queramos mover</funcion>
+        <funcion nombre="param">cd minihack</funcion> 
+        <funcion nombre="jump" height="10px"></funcion>
+        <funcion nombre="img">/static/content/cdd.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion>Para movernos a un directorio hacia atrás ejecutamos:</funcion>
+        <funcion nombre="param">cd ..</funcion> 
+        <funcion nombre="jump" height="10px"></funcion>
+        <funcion nombre="img">/static/content/cda.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion>Podemos movernos varios directorios tanto hacia atrás como dentro de otros directorios:</funcion>
+        <funcion nombre="param">cd ../Desktop</funcion> 
+        <funcion nombre="jump" height="10px"></funcion>
+        <funcion nombre="img">/static/content/cdo.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion>
+        <funcion>Siempre que iniciemos la ruta con / la shell entiende que se trata de la raiz</funcion>
+        <funcion nombre="jump" height="10px"></funcion>
+        <funcion>Siempre que iniciemos la ruta con ./ la shell entiende que se trata del directorio actual</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion>Siempre que iniciemos la ruta con ../ la shell entiende que se trata del directorio anterior</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion>Para ir al directorio home podemos hacerlo de varias maneras:</funcion>
+        <funcion nombre="param">cd, cd ~ o cd $HOME</funcion> 
+        <funcion nombre="jump" height="10px"></funcion>
+        <funcion nombre="img">/static/content/cdh.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+    </comando>
+    <comando nombre="mkdir">
+        <funcion>mkdir nos permite crear directorios</funcion> 
+        <funcion nombre="param">mkdir nombre_directorio</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="img">/static/content/mkdir.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion>Con el parametro -p podemos crear unos directorios dentro de otros</funcion> 
+        <funcion nombre="param">mkdir -p directorio_padre/directorio_hijo</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="img">/static/content/mkdir2.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+    </comando>
+    <comando nombre="rm">
+        <funcion>rm nos permite borrar archivos y directorios</funcion> 
+        <funcion nombre="param">rm archivo</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion>El parametro -r nos permite hacerlo de manera recursiva, para que nos permita borrar directorios y cualquier archivo añadimos el parametro -f de force</funcion> 
+        <funcion nombre="param">rm -rf archivo</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="img">/static/content/rmf.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+    </comando>
+    <comando nombre="mv">
+        <funcion>mv nos permite mover archivos y cambiarles el nombre</funcion> 
+        <funcion nombre="param">mv archivo destino</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="img">/static/content/mv.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion>Para cambiar el nombre simplemente añadimos el nombre nuevo despues del destino si es que lo que queremos mover tambien, si no sólo el nuevo nombre.</funcion> 
+        <funcion nombre="param">mv archivo destino/nuevo_nombre</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="img">/static/content/mv2.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+    </comando>
+    <comando nombre="cp">
+        <funcion>cp nos permite copiar un archivo cualquiera donde queramos con el nombre que queramos</funcion> 
+        <funcion nombre="param">cp archivo destino/nombre</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="img">/static/content/cp.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+    </comando>
+    <comando nombre="base64">
+        <funcion>El comando base64 se utiliza para codificar y decodificar archivos en formato Base64. El formato Base64 es una representación de datos binarios en texto ASCII, que es útil para transferir datos binarios a través de canales de texto, como el correo electrónico o los mensajes en línea.</funcion> 
+        <funcion nombre="param">echo 'hola' | base64</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="img">/static/content/base64.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="line"></funcion>
+        <funcion nombre="param">base64 -d </funcion> 
+        <funcion>Decodifica los datos codificados en formato Base64 y muestra la salida original en binario.</funcion> 
+        <funcion nombre="param">base64 -w </funcion> 
+        <funcion>Especifica el número de columnas para envolver la salida codificada. Por defecto, la salida se muestra en una sola línea.</funcion> 
+        <funcion nombre="param">base64 -i</funcion> 
+        <funcion>Especifica el archivo de entrada para la codificación o decodificación. Si no se proporciona, se utiliza la entrada estándar.</funcion> 
+    </comando>
+
+    <comando nombre="xxd">
+        <funcion>El comando xxd se utiliza para mostrar o modificar archivos en formato hexadecimal y binario. Proporciona una forma conveniente de visualizar y manipular archivos binarios.</funcion> 
+        <funcion nombre="param">echo 'hola' | xxd -ps</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="img">/static/content/xxd.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="line"></funcion>
+        <funcion nombre="param">xxd -r </funcion> 
+        <funcion>Realiza la operación inversa, convirtiendo datos hexadecimales o binarios en su representación original.</funcion> 
+        <funcion nombre="param">xxd -p </funcion> 
+        <funcion>Muestra la salida en formato plano, sin la columna de offset y los caracteres ASCII.</funcion> 
+        <funcion nombre="param">xxd -l </funcion> 
+        <funcion>Limita la cantidad de datos que se mostrarán o se modificarán.</funcion> 
+        <funcion nombre="param">xxd -c </funcion> 
+        <funcion>Especifica el número de columnas para mostrar los datos hexadecimales. Por defecto, se utilizan 16 columnas.</funcion> 
+        <funcion nombre="param">xxd -i </funcion> 
+        <funcion>Especifica el archivo de entrada para la visualización o modificación. Si no se proporciona, se utiliza la entrada estándar.</funcion> 
+    </comando>
+
+    <comando nombre="find">
+        <funcion>El comando find se utiliza para buscar archivos y directorios en un sistema de archivos según criterios especificados. Permite buscar archivos por nombre, tamaño, tipo, fecha de modificación y otros atributos.</funcion> 
+        <funcion nombre="param">find /home \-name file</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="img">/static/content/find.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="line"></funcion>
+        <funcion nombre="param">find directorio</funcion>
+        <funcion>Especifica el directorio base donde se iniciará la búsqueda. Si no se proporciona, se utiliza el directorio actual.</funcion>
+        <funcion nombre="param">find -name patrón</funcion>
+        <funcion>Busca archivos o directorios que coincidan con el patrón de nombre especificado.</funcion>
+        <funcion nombre="param">find -type tipo</funcion>
+        <funcion>Filtra los resultados por tipo, donde f representa archivos regulares y d representa directorios.</funcion>
+        <funcion nombre="param">find -size tamaño</funcion>
+        <funcion>Busca archivos basándose en su tamaño. Puede especificarse en bytes (c), bloques de 512 bytes (b) o unidades legibles por humanos (k, M, G, etc.).</funcion>
+        <funcion nombre="param">find -mtime días</funcion>
+        <funcion>Filtra los archivos según su fecha de modificación en días. Puede utilizar +n para buscar archivos modificados hace más de n días, -n para buscar archivos modificados hace menos de n días, o n para buscar archivos modificados exactamente n días atrás.</funcion>
+    </comando>
+
+    <comando nombre="7z">
+        <funcion>El comando 7z es una utilidad de línea de comandos para comprimir y descomprimir archivos en diversos formatos. Permite crear archivos comprimidos con una alta relación de compresión y admite varios algoritmos de compresión.</funcion> 
+        <funcion nombre="param">7z x rock_comprimido.7z</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="img">/static/content/7z.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="line"></funcion>
+        <funcion nombre="param">7z comando</funcion>
+        <funcion>Especifica el comando a ejecutar, como a para crear un archivo comprimido, x para extraer archivos de un archivo comprimido, e para extraer todo el contenido de un archivo comprimido, etc.</funcion>
+        <funcion nombre="param">7z archivo.7z</funcion>
+        <funcion>Especifica el archivo comprimido en el que se realizarán las operaciones.</funcion>
+        <funcion nombre="param">7z -o directorio</funcion>
+        <funcion>Especifica el directorio de destino para la extracción de archivos.</funcion>
+        <funcion nombre="param">7z -pcontraseña</funcion>
+        <funcion>Establece una contraseña para proteger el archivo comprimido.</funcion>
+        <funcion nombre="param">7z -r</funcion>
+        <funcion>Habilita la recursividad al comprimir o extraer directorios de forma recursiva.</funcion>
+        <funcion nombre="param">7z -tformato</funcion>
+        <funcion>Especifica el formato del archivo comprimido, como zip, gzip, tar, etc.</funcion>
+    </comando>
+
+</comandos>

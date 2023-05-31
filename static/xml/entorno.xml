@@ -1,0 +1,298 @@
+<comandos>
+    <comando nombre="echo">
+        <funcion>El comando "echo" se utiliza para imprimir texto en la salida estándar.</funcion>
+        <funcion nombre="jump" height="5px"></funcion>
+        <funcion nombre="img">/static/content/hola.png</funcion>
+        <funcion nombre="line"></funcion>
+        <funcion nombre="param">echo "Hola, mundo"</funcion>
+        <funcion>Imprime el texto "Hola, mundo" en la salida estándar.</funcion>
+        <funcion nombre="param">echo -e "Texto\nen\nvarias\nlíneas"</funcion>
+        <funcion>Imprime texto en varias líneas utilizando el carácter de escape \n para representar saltos de línea.</funcion>
+        <funcion nombre="param">echo $VARIABLE</funcion>
+        <funcion>Imprime el contenido de una variable llamada "VARIABLE".</funcion>
+    </comando>
+    <comando nombre="Variables de entorno">
+        <funcion nombre='param'>echo $HOME </funcion> 
+        <funcion>Muestra la variable de entorno HOME que nos dice el directorio home de nuestro usuario.</funcion> 
+        <funcion nombre='line'></funcion> 
+        <funcion nombre='param'>echo $USER </funcion> 
+        <funcion>Muestra la variable de entorno USER que nos dice el nombre de nuestro usuario, tambien podemos ejecutar el comando "whoami".</funcion> 
+        <funcion nombre='line'></funcion> 
+        <funcion nombre='param'>echo $SHELL </funcion> 
+        <funcion>Tipo de shell que estamos usando, podemos ver las shells que tenemos instaladas en /etc/shells.</funcion> 
+        <funcion nombre='line'></funcion> 
+        <funcion nombre='param'>pwd </funcion> 
+        <funcion>Nos indica la ruta actual del sistema en la que nos encontramos.</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'>env</funcion> 
+        <funcion>Muestra el entorno en el cual estamos trabajando</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> echo $PS1</funcion> 
+        <funcion>Muestra el prompt de la shell actual.</funcion> 
+        <!-- <funcion nombre="jump" height="10px"></funcion>         -->
+        <funcion nombre="img">/static/content/prompt.png</funcion>
+        <!-- <funcion nombre="jump" height="10px"></funcion>   -->
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'>echo $UID</funcion> 
+        <funcion>El UID (User IDentifier) es un número único asignado a cada usuario en el sistema operativo Linux y se utiliza para identificar de forma única a los usuarios en el sistema.
+        Si un usuario desea verificar si tiene permisos de administrador, puede utilizar la variable $UID para verificar si su UID es 0 (lo que significa que tiene permisos de superusuario).</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> echo $PATH </funcion> 
+        <funcion>Lista de directorios en los cuales se buscara de izquierda a derecha en ellos comandos o binarios que ejecutemos en el terminal. Si ejecutamos un binario y este no se encuentra en una ruta 
+        de nuestro PATH no se ejecutará.</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> logname</funcion> 
+        <funcion>Nombre con el que nos hemos logueado al sistema aunque luego cambiemos de usaurio.</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> !$ </funcion> 
+        <funcion>Ejecuta el ultimo comando.</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> ./ (directorio actual) </funcion> 
+        <funcion>Si queremos ejecutar un binario o hacer algun tipo de referencia al directorio donde nos encontramos.</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> ../ (directorio anterior) </funcion> 
+        <funcion>Hace referencia a un directorio hacia atrás.</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> ~/ o $HOME </funcion> 
+        <funcion>Hace referencia al directorio home del usuario como el cual estamos conectados. Si somos root en /root y cualquier otro usuario en /home/nombre_de_usuario.
+        Para movernos rapidamente al home podemos hacerlo de varias maneras:</funcion> 
+        <funcion nombre='param'> cd, cd ~ o cd $HOME </funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> / (raíz) </funcion> 
+        <funcion>Dirctorio raiz, aqui encontraremos las principales rutas de nuestro sistema como bin, dev, tmp, opt, proc...</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> ../{file1,file2}  </funcion> 
+        <funcion>Para manejar múltiples archivos podemos usar {,}</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> $0</funcion> 
+        <funcion>Cuando ejecutamos un script o un comando esto hace referencia a el nombre del propio comando o del script, a secas spawnearia una bash ya que hace referencia al interprete de comandos</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> $1 </funcion> 
+        <funcion>Primer parámetro o argumento pasado a un comando o script ejecutado</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> $2 </funcion> 
+        <funcion>Segundo parámetro o argumento pasado a un comando o script ejecutado y así sucesivamente con $3,$4,$5...</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> $#  </funcion> 
+        <funcion>Número total de parámetros dados a un comando o script.</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> $* </funcion> 
+        <funcion>Almacena todo el set de parámetros como una sola cadena de texto</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> $@ </funcion> 
+        <funcion>Almacena todo el set de parámetros en una lista</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> $? </funcion> 
+        <funcion>Exit status del último comando, nos dice si el estado ha sido exitoso (0) error (1) o que tipo de error dependiendo del valor que devuelva </funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> $$ </funcion> 
+        <funcion>PID o número de proceso de la shell actual </funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> $! </funcion> 
+        <funcion>PID o número de proceso del último trabajo en el background. </funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> !! </funcion> 
+        <funcion>Ejecuta el último comando </funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> !1  </funcion> 
+        <funcion>Ejecuta el primer comando del .bash_history.</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> !-1  </funcion> 
+        <funcion>Ejecuta el último comando del .bash_history.</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> !n:p  </funcion> 
+        <funcion>Muestra el ultimo comando sin ejecutarlo y lo añade al history.</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> chmod 777 !-3* </funcion> 
+        <funcion>Asigna permisos 777 a los argumentos de el antepenultimo comando ejecutado </funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> !!:s/status/start </funcion> 
+        <funcion>Ejecuta el último comando pero sustituye cualquier "status" que encuentre por "start".</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> sodu mkdir demo </funcion> 
+        <funcion nombre='param'> ^sodu^sudo  </funcion> 
+        <funcion>Ejecuta el ultimo comando pero cambia la primera "sodu" por "sudo"</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> r </funcion> 
+        <funcion>ejecuta el ultimo comando</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> echo $HISTSIZE </funcion> 
+        <funcion>Define el número máximo de comandos que se almacenan en el historial </funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> export $HISTSIZE=1000 </funcion> 
+        <funcion>Export sirve para modificar variables globales, en este caso de entorno, pero solo se aplicaria en la shell que tenemos abierta, si queremos que guarde para que sea así siempre 
+        que abramos unas shell tenemos que añadirlo a nuestro archivo de configuracion .bashrc en nuestro directorio home</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre='param'> Wildcards: ? y * </funcion> 
+        <funcion>Podemos usar el ? como sustitución de un carácter y * como varios</funcion> 
+        <funcion> /usr/b?n/d?r funcionaria ya que interpretaría los posibles matches y en este caso coincide con /usr/bin/dir que es como un ls</funcion> 
+    </comando>
+    <comando nombre="cat">
+        <funcion>Cat es un comando en el sistema operativo Linux que se utiliza para concatenar y mostrar el contenido de archivos en la terminal. Es decir, cat permite ver el contenido de un archivo en la línea de comandos. 
+        Además de simplemente mostrar el contenido de un archivo, cat también puede utilizarse para concatenar varios archivos en un solo archivo de salida:</funcion>
+        <funcion nombre='line'></funcion>
+        <funcion nombre="img">/static/content/cat.png</funcion>
+        <funcion nombre="param">cat file1.txt file2.txt > combined.txt</funcion> 
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion>Agregar contenido a un archivo existente:</funcion>
+        <funcion nombre="param">echo "new text" >> existing_file.txt</funcion> 
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion>Mostrar varios archivos a la vez: </funcion> 
+        <funcion nombre="param">cat file1.txt file2.txt</funcion>  
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion>Una herramienta util que muestra de una manera mas colorida el output es bat, ademas podemos especificar el lenguaje con el parámetro -l, para instalarlo ejecutamos: </funcion> 
+        <funcion nombre="param">apt install bat</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="img">/static/content/bat.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+    </comando>
+    <comando nombre="wc">
+        <funcion>Wc puede contar el contenido de un archivo, lineas caracteres, palabras...</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="param">cat file.txt | wc -l</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="img">/static/content/wc1.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion>Parámetro -w sirve para contar palabras</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="param">cat file.txt | wc -l</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="img">/static/content/wc2.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion>Parámetro -c sirve para contar caracteres</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="param">cat file.txt | wc -c</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="img">/static/content/wc3.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+    </comando>
+    <comando nombre="sort">
+        <funcion>Sort ordena alfabeticamente un archivo</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="img">/static/content/sort1.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="param">sort file.txt | bat</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="img">/static/content/sort2.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion>Con el parámetro -u podemos quitar las repeticiones de un archivo</funcion> 
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="param">sort file.txt | bat</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="img">/static/content/sort3.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+    </comando>
+
+    <comando nombre="sed">
+        <funcion>Sed cambia letras o palabras que podemos definir mediante regex por otras que le indiquemos</funcion> 
+        <funcion nombre='line'></funcion>
+        <funcion nombre="img">/static/content/sed.png</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion>la s es de string y la g de global para que no lo haga solo 1 vez, para salvar caracteres especiales con \</funcion> 
+        
+        <funcion nombre="param">sed 's/termino sustituido/termino que sustituye/g'</funcion> 
+        
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion>Quitar espacios en blanco</funcion> 
+        <funcion nombre="param">sed '/^\s*$/d'</funcion> 
+        <funcion>Quitar todas las vocales por un _ </funcion> 
+        <funcion nombre="param">sed 's/[aeiou]/_/g'</funcion> 
+        <funcion>Quitar todo lo que no sean vocales por un _ </funcion> 
+        <funcion nombre="param">sed 's/[^aeiou]/_/g'</funcion> 
+        <funcion>Con sed -i podemos indicar que se aplique sobre un archivo</funcion>
+        <funcion nombre="param">sed -i 's/127.0.0.1/10.10.10.10/' wp-load.php</funcion> 
+    </comando>
+
+    <comando nombre="grep">
+        <funcion>Filtra por cadenas de texto o expresiones regulares en un archivo o output</funcion>
+        
+        <funcion nombre='line'></funcion>
+        <funcion nombre="img">/static/content/bravo.png</funcion>
+        <funcion nombre="param">grep -e</funcion>
+        <funcion>Sirve para buscar patrones que son como los atributos -c -i… si es usada varias veces o se combina con -f de FILE entonces busca todos los patrones dados</funcion>
+        <funcion nombre="param">grep -f </funcion>
+        <funcion>Para filtrar de manera case insensitive, ignorando carácteres en mayúscula o minúscula</funcion>
+        <funcion nombre="param">grep -i </funcion>
+        <funcion>busca patrones de un archivo, si se usa varias veces o se combina con -e busca todos los patrones dados</funcion>
+        <funcion nombre="param">grep -v </funcion>
+        <funcion>invierte el sentido del matching , selecciona non-matching lines </funcion>
+        <funcion nombre="param">grep -m </funcion>
+        <funcion>Deja de buscar matches despues del numero que le indiquemos </funcion>
+        <funcion nombre="param">grep -n </funcion>
+        <funcion>nos dice el número de la línea en el que aparece cada match</funcion>
+        <funcion nombre="param">grep -T </funcion>
+        <funcion>mete una tabulación al principio y se asegura de que  todo encaje en forma de columna</funcion>
+        <funcion nombre="param">grep -A X</funcion>
+        <funcion>muestra X líneas por debajo del match </funcion>
+        <funcion nombre="param">grep -B X</funcion>
+        <funcion>muestra X líneas por encima del match </funcion>
+        <funcion nombre="param">grep -C X</funcion>
+        <funcion>muestra X líneas por debajo y encima del match </funcion>
+    </comando>
+
+    <comando nombre="diff">
+        <funcion>Muestra las diferencias entre dos archivos</funcion>
+        
+        <funcion nombre="line"></funcion>
+        <funcion nombre="img">/static/content/diff.png</funcion>
+        <funcion nombre="param">-u</funcion>
+        <funcion>Muestra las diferencias de manera unificada, con contexto adicional alrededor de las líneas modificadas.</funcion>
+
+        <funcion nombre="param">diff -c</funcion>
+        <funcion>Similar a -u, muestra las diferencias con contexto, pero en un formato diferente.</funcion>
+
+        <funcion nombre="param">diff -r </funcion>
+        <funcion>Compara directorios de forma recursiva, incluyendo todos los archivos y subdirectorios.</funcion>
+
+        <funcion nombre="param">diff -i </funcion>
+        <funcion>Ignora las diferencias en mayúsculas y minúsculas durante la comparación.</funcion>
+
+        <funcion nombre="param">diff -w </funcion>
+        <funcion>Ignora los espacios en blanco al realizar la comparación.</funcion>
+
+        <funcion nombre="param">diff -B </funcion>
+        <funcion>Ignora las líneas en blanco durante la comparación.</funcion>
+
+        <funcion nombre="param">diff -q </funcion>
+        <funcion>Muestra un mensaje breve indicando si los archivos difieren o no, sin mostrar las diferencias detalladas.</funcion>
+
+        <funcion nombre="param">diff -s </funcion>
+        <funcion>Muestra un mensaje indicando si los archivos son idénticos o no, sin mostrar las diferencias detalladas.</funcion>
+
+        <funcion nombre="param">diff -y </funcion>
+        <funcion>Muestra las diferencias en dos columnas, una para cada archivo, en formato de visualización lado a lado.</funcion>
+
+        <funcion nombre="param">diff -n </funcion>
+        <funcion>Muestra las diferencias en el formato RCS.</funcion>
+
+        <funcion nombre="param">diff -L </funcion>
+        <funcion>Etiqueta los archivos comparados con una etiqueta personalizada</funcion>
+
+    </comando>
+
+    <comando nombre="awk">
+        <funcion>El comando awk es una herramienta de procesamiento de texto en línea de comandos en Unix y sistemas operativos similares. Se utiliza para buscar, procesar y manipular datos en archivos de texto o en la entrada estándar. awk interpreta líneas de entrada en registros y campos, y luego aplica patrones y acciones para realizar operaciones en esos datos.</funcion>
+        <funcion nombre="line"></funcion>
+        <funcion nombre="img">/static/content/awk.png</funcion>
+        <funcion nombre="param">awk 'patrón {acción}' archivo</funcion>
+        <funcion>Ejecuta una acción en las líneas que coinciden con el patrón especificado en el archivo dado. Puede utilizarse para filtrar y manipular datos en archivos de texto.</funcion>
+        <funcion nombre="param">-F </funcion>
+        <funcion>Especifica el separador de campos utilizado en el archivo de entrada. Por defecto, el separador es el espacio en blanco, pero con este parámetro puedes especificar un separador diferente, como una coma.</funcion>
+        <funcion nombre="param">-v variable=valor</funcion>
+        <funcion>Permite definir variables en awk y asignarles valores. Estas variables pueden ser utilizadas en las acciones para realizar cálculos o almacenar información adicional.</funcion>
+        <funcion nombre="param">BEGIN {acción}</funcion>
+        <funcion>Especifica una acción que se ejecutará antes de procesar las líneas del archivo de entrada. Puede utilizarse para inicializar variables u realizar tareas de configuración.</funcion>
+        <funcion nombre="param">END {acción}</funcion>
+        <funcion>Especifica una acción que se ejecutará después de procesar todas las líneas del archivo de entrada. Puede utilizarse para mostrar resúmenes o resultados finales.</funcion>
+        <funcion nombre="param">NR</funcion>
+        <funcion>Variable especial que representa el número de registro actual (línea) que se está procesando.</funcion>
+        <funcion nombre="param">NF</funcion>
+        <funcion>Variable especial que representa el número de campos en el registro actual.</funcion>
+        <funcion nombre="param">$n</funcion>
+        <funcion>Hace referencia al campo número n del registro actual. Por ejemplo, $1 representa el primer campo, $2 el segundo campo, y así sucesivamente.</funcion>
+    
+    </comando>
+
+</comandos>

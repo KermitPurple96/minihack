@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<comandos>
+    <comando nombre="mini1" ref="1">
+       <funcion nombre="text">Puedes conseguir la flag conectándote al contenedor de networking por:</funcion>
+       <funcion nombre="param" color="lime">IP: 10.10.10.9</funcion>
+       <funcion nombre="param" color="lime">Puerto: 7777</funcion> 
+       <funcion nombre="flag" code="1"></funcion>
+    </comando>
+    <comando nombre="mini2" ref="2">
+       <funcion nombre="text">Puedes conseguir la flag conectándote al contenedor de networking pero el puerto se encuentra entre este rango:</funcion>
+       <funcion nombre="param" color="lime">IP: 10.10.10.9</funcion>
+       <funcion nombre="param" color="lime">Puerto: 10000-11000</funcion> 
+       <funcion nombre="flag" code="2"></funcion>
+    </comando>
+    <comando nombre="mini3" ref="3">
+        <funcion nombre="text">La flag estás expuesta en un servicio web del contenedor networking:</funcion>
+        <funcion nombre="param" color="lime">IP: 10.10.10.9</funcion>
+        <funcion nombre="flag" code="3"></funcion>
+    </comando>
+    <comando nombre="" ref="4">
+        <funcion nombre="text">Pronto más challenges!!</funcion>
+        <funcion nombre="jump" height="10px"></funcion> 
+        <funcion nombre="pronto" code="4"></funcion>
+    </comando>
+</comandos>
