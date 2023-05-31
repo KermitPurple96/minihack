@@ -59,9 +59,9 @@ docker build -t entorno /home/user/minihack/dockerfiles/entorno
 docker build -t archivos /home/user/minihack/dockerfiles/archivos
 docker build -t comandos /home/user/minihack/dockerfiles/comandos
 docker build -t networking /home/user/minihack/dockerfiles/networking
-docker build -t entorno /home/user/minihack/dockerfiles/usuarios
-docker build -t entorno /home/user/minihack/dockerfiles/procesos
-docker build -t entorno /home/user/minihack/dockerfiles/pivote
+docker build -t usuarios /home/user/minihack/dockerfiles/usuarios
+docker build -t procesos /home/user/minihack/dockerfiles/procesos
+docker build -t pivote /home/user/minihack/dockerfiles/pivote
 ```
 8. Start the containers
 ```sh
