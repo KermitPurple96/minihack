@@ -1,10 +1,15 @@
 
 # Minihack
 
-![portada](https://github.com/KermitPurple96/minihack/assets/103221169/1a4c81e6-686b-4695-b3bb-3ea39dd22fb4)
-![lvl](https://github.com/KermitPurple96/minihack/assets/103221169/79676d56-df46-40e2-aacf-73836b3a3ca8)
-![lvl1](https://github.com/KermitPurple96/minihack/assets/103221169/79f52a22-c009-423a-b018-9d270b2aa9f4)
-
+<p align="center">
+  ![portada](https://github.com/KermitPurple96/minihack/assets/103221169/1a4c81e6-686b-4695-b3bb-3ea39dd22fb4)
+ </p>
+<p align="center">
+  ![lvl](https://github.com/KermitPurple96/minihack/assets/103221169/79676d56-df46-40e2-aacf-73836b3a3ca8)
+</p>
+<p align="center">
+  ![lvl1](https://github.com/KermitPurple96/minihack/assets/103221169/79f52a22-c009-423a-b018-9d270b2aa9f4)
+</p>
 
 ### Installation
 1. Clone repository
