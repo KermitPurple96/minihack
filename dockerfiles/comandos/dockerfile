@@ -1,0 +1,68 @@
+FROM ubuntu:latest
+
+MAINTAINER kermit "kermitpurple96@gmail.com"
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt update && apt install -y net-tools \
+    sudo \
+    iputils-ping \
+    iproute2 \
+    neovim \
+    moreutils \
+    curl \
+    git \ 
+    nano \
+    apache2 \
+    php \
+    openssh-server \
+    ufw
+
+RUN mkdir /usr/share/scripts
+COPY chattr.sh /usr/share/scripts/chattr.sh
+RUN sudo chmod -R 700 /usr/share/scripts
+
+RUN useradd -ms /bin/bash mini1 
+RUN touch /home/mini1/challenge_1.txt
+RUN chmod -R 754 /home/mini1
+RUN ln -sf /dev/null /home/mini1/.bash_history
+RUN rm /home/mini1/.bashrc
+COPY entorno_bashrc1 /home/mini1/.bashrc
+RUN touch /home/mini1/.flag
+RUN echo 'DurRwQHbjUTmfG3Wk6p7PeC9B' > /home/mini1/.flag
+
+RUN useradd -ms /bin/bash mini2 
+RUN chmod -R 754 /home/mini2
+RUN ln -sf /dev/null /home/mini2/.bash_history
+RUN rm /home/mini2/.bashrc
+COPY entorno_bashrc2 /home/mini2/.bashrc
+RUN touch /home/mini2/flag
+RUN echo 'cpgNUndrSsqQ7IGP2B4TlM0LR' > /home/mini2/flag
+RUN mv /home/mini2/flag /home/mini2/-
+
+RUN useradd -ms /bin/bash mini3 
+RUN chmod -R 754 /home/mini3
+RUN ln -sf /dev/null /home/mini3/.bash_history
+RUN rm /home/mini3/.bashrc
+COPY entorno_bashrc3 /home/mini3/.bashrc
+RUN touch /home/mini3/challenge_3.txt
+RUN echo 'R2Y0STZPbGdzM1JrRnJ4MjV5UzdBdFlRYgo=' > /home/mini3/challenge_3.txt
+
+RUN useradd -ms /bin/bash mini4 
+RUN touch /home/mini4/challenge_4.txt
+RUN chmod -R 754 /home/mini4
+RUN ln -sf /dev/null /home/mini4/.bash_history
+RUN rm /home/mini4/.bashrc
+COPY entorno_bashrc4 /home/mini4/.bashrc
+RUN echo '3156466b614c325a75454868774a4f6a6472595837553042390a' > /home/mini4/challenge_4.txt
+
+RUN sudo echo 'mini1:frog' | chpasswd
+RUN sudo echo 'mini2:KdLbAoYqGTc5ZQpIz87gH3VJt' | chpasswd
+RUN sudo echo 'mini3:t4V9HLGxeNfWl5hYmErpMbaB2' | chpasswd
+RUN sudo echo 'mini4:FdiZt2mf8O4vKeljNrh6qAJTs' | chpasswd
+
+EXPOSE 22 
+
+ENTRYPOINT service ssh start && /bin/bash
+
+
