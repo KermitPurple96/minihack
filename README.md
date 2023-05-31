@@ -19,6 +19,7 @@ git clone https://github.com/KermitPurple96/minihack
 2. Install packages
 ```sh
 sudo apt update
+apt install docker.io -y
 sudo apt-get install python3
 sudo apt install python3-pip
 sudo apt-get install python3-dev libmysqlclient-dev
@@ -50,7 +51,7 @@ pip install bootstrap-flask
 ```
 6. Start Flask server
 ```sh
-/home/user/minihack/start.sh
+/home/kermit/minihack/start.sh
 ```
 
 7. Create docker images
@@ -65,6 +66,6 @@ docker build -t pivote /home/user/minihack/dockerfiles/pivote
 ```
 8. Start the containers
 ```sh
-cd /home/user/minihack/dockerfiles
+cd /home/kermit/minihack/dockerfiles
 docker-compose up -d
 ```
