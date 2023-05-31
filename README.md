@@ -28,6 +28,7 @@ apt install python3-virtualenv
 
 3. Create virtual environment 
 ```sh
+cd /home/kermit/minihack
 virtualenv env --python=python3
 ```
 
