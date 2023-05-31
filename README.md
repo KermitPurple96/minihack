@@ -20,6 +20,7 @@ git clone https://github.com/KermitPurple96/minihack
 ```sh
 sudo apt update
 apt install docker.io -y
+apt install docker-compose
 sudo apt-get install python3
 sudo apt install python3-pip
 sudo apt-get install python3-dev libmysqlclient-dev
