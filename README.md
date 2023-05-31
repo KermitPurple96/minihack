@@ -19,8 +19,11 @@ git clone https://github.com/KermitPurple96/minihack
 2. Install packages
 ```sh
 sudo apt update
+sudo apt -y install wget php php-cgi php-mysqli php-pear php-mbstring libapache2-mod-php php-common php-phpseclib php-mysql
+sudo apt install phpmyadmin php-mbstring php-zip php-gd php-json php-curl
 apt install docker.io -y
 apt install docker-compose
+sudo apt install mysql-server
 sudo apt-get install python3
 sudo apt install python3-pip
 sudo apt-get install python3-dev libmysqlclient-dev
