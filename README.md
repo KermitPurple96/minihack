@@ -56,6 +56,11 @@ source /home/kermit/minihack/env/bin/activate
 
 5. Install libraries
 ```sh
+pip3 install --upgrade pip
+pip3 install wheel
+apt install pkgconf
+export MYSQLCLIENT_LDFLAGS=$(pkg-config --libs mysqlclient)
+export MYSQLCLIENT_CFLAGS=$(pkg-config --cflags mysqlclient)
 pip install Flask
 pip3 install mysqlclient
 pip3 install mysql
