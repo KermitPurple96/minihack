@@ -35,8 +35,6 @@ mysql>INSTALL COMPONENT "file://component_validate_password";
 mysql> exit
 sudo phpenmod mbstring
 sudo systemctl restart apache2
-```
-```sh
 apt install docker.io -y
 apt install docker-compose
 sudo apt-get install python3
