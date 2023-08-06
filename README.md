@@ -17,13 +17,28 @@ This is a CTF type web project based on the [OverTheWire](https://overthewire.or
 git clone https://github.com/KermitPurple96/minihack
 ```
 2. Install packages
+
 ```sh
 sudo apt update
+sudo apt install mysql-server
 sudo apt -y install wget php php-cgi php-mysqli php-pear php-mbstring libapache2-mod-php php-common php-phpseclib php-mysql
 sudo apt install phpmyadmin php-mbstring php-zip php-gd php-json php-curl
+```
+Abort when phpmyadmin error
+```sh
+mysql -u root -p
+mysql> UNINSTALL COMPONENT "file://component_validate_password";
+mysql> exit
+sudo apt install phpmyadmin
+mysql -u root -p
+mysql>INSTALL COMPONENT "file://component_validate_password";
+mysql> exit
+sudo phpenmod mbstring
+sudo systemctl restart apache2
+```
+```sh
 apt install docker.io -y
 apt install docker-compose
-sudo apt install mysql-server
 sudo apt-get install python3
 sudo apt install python3-pip
 sudo apt-get install python3-dev libmysqlclient-dev
